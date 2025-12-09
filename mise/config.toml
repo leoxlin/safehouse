@@ -1,0 +1,3 @@
+# *> ~/.config/mise/config.toml
+[tools]
+node = "25"
