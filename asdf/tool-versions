@@ -1,7 +1,7 @@
 # Default global versions
 # *> ~/.tool-versions
 
-nodejs 20.19.4
+nodejs v25.0.0
 rust 1.90.0
 golang 1.24.9
 python 3.14.0
