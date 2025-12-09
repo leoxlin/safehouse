@@ -10,9 +10,14 @@ if [ ! -e $HOME/.vim/bundle/Vundle.vim ]; then
   git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 fi
 
+
+if ! command -v brew >/dev/null 2>&1; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
 if [[ "$(uname)" == "Darwin" ]]; then
-  if [ ! -e /opt/homebrew/bin/brew ]; then
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  fi
   /opt/homebrew/bin/brew bundle
+else
+
+  /home/linuxbrew/.linuxbrew/bin/brew bundle
 fi
