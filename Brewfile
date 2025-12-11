@@ -21,3 +21,4 @@ if OS.mac?
 end
 
 brew 'mise'
+cask 'zed'
