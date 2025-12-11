@@ -1,9 +1,12 @@
 # *> ~/.zshrc
 
-
 ZSH=$HOME/.zsh/ohmyzsh
 ZSH_CUSTOM=$HOME/.zsh/themes
-ZSH_THEME="workspace"
+if [[ "$(hostname)" =~ "articulate" ]]; then
+  ZSH_THEME="work"
+else
+  ZSH_THEME="home"
+fi
 ZSH_DISABLE_COMPFIX="true"
 ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 DISABLE_AUTO_UPDATE="true"
