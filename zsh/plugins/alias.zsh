@@ -6,7 +6,10 @@ function list_alias_starts_with() {
     sed "s/=/$tab/" | \
     tr -d "'" | \
     grep -v 'list_alias_starts_with' | \
-    sort -k1,1
+    awk -F'\t' '{ print length($1), $0 }' | \
+    sort -k1,1 | \
+    cut -d' ' -f2- | \
+    column -t -s $'\t'
 }
 
 # Shell aliases
