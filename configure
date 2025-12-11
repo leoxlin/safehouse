@@ -10,6 +10,9 @@ if [[ "$(uname)" == "Darwin" ]]; then
   export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
   export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
   export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+  export EXCLUDE_SEARCH="linux"
+else
+  export EXCLUDE_SEARCH="macos"
 fi
 
 [ "$1" == "apply" ] && apply=1 || apply=0
@@ -18,7 +21,8 @@ fi
 get_destination() {
   if [ -f "$1" ]; then
     grep -m 1 "*>" "$1" | \
-    sed 's/" \*>\|# \*>\|\/\/ \*>//g' | \
+    grep -v "($EXCLUDE_SEARCH)" | \
+    sed 's/".*\*>\|#.*\*>\|\/\/.*\*>//g' | \
     sed 's/^[[:space:]]*//;s/[[:space:]]*$//'
   elif [ -d "$1" ] && [ -f "$1/.dest" ]; then
     cat $1/.dest

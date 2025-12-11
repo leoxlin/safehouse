@@ -22,3 +22,4 @@ end
 
 brew 'mise'
 cask 'zed'
+cask 'ghostty'

@@ -16,8 +16,11 @@ if ! command -v brew >/dev/null 2>&1; then
 fi
 
 if [[ "$(uname)" == "Darwin" ]]; then
-  /opt/homebrew/bin/brew bundle
+  export BREW_PATH="/opt/homebrew/bin"
 else
-
-  /home/linuxbrew/.linuxbrew/bin/brew bundle
+  export BREW_PATH="/home/linuxbrew/.linuxbrew/bin"
 fi
+
+$BREW_PATH/brew bundle
+$BREW_PATH/mise trust ./mise/config.toml
+$BREW_PATH/mise install
