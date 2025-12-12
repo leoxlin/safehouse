@@ -8,6 +8,7 @@ if OS.mac?
   brew 'libevent'
   brew 'libyaml'
   brew 'multitail'
+  brew 'nushell'
   brew 'openssl'
   brew 'pre-commit'
   brew 'readline'
