@@ -86,11 +86,11 @@ zart_set_context() {
 
 zart() {
   case "$1" in
-    set-context|context|set)
+    set-context|context|set|use)
       zart_set_context "$2"
       return $?
       ;;
-    remove-context|rm)
+    remove-context|clear)
       rm -f "${ZART_DIR}/context"
       return 0
       ;;
@@ -141,7 +141,7 @@ zart() {
   else
     fullcommand="art --on $account --region $region ${fullargs[@]}"
   fi
-  local dangerous=$(echo $fullcommand | grep -E 'delete|edit|remove|rm|rds|apply|deploy|uninstall|dump-db')
+  local dangerous=$(echo $fullcommand | grep -E 'delete|edit|remove|rm|rds|apply|deploy|uninstall|dump-db|terraform')
 
   if [[ -n "$is_prod" ]] && [[ -n "$dangerous" ]]; then
     printf "\e[1m\e[5m\e[40m\e[31m DANGER PROD CMD \e[47m\e[30m ${fullcommand} \e[40m\e[31m [yN]? \e[37m"
