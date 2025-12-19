@@ -18,9 +18,10 @@ if OS.mac?
   cask '1password-cli'
   cask 'ghostty'
   cask 'wireshark'
+  cask 'zed'
 end
 
 brew 'ack'
 brew 'openssl'
 brew 'mise'
-cask 'zed'
+brew 'neovim'
