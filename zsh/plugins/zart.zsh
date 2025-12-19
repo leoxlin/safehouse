@@ -141,9 +141,9 @@ zart() {
   else
     fullcommand="art --on $account --region $region ${fullargs[@]}"
   fi
-  local dangerous=$(echo $fullcommand | grep -E 'delete|edit|remove|rm|rds|apply|deploy|uninstall|dump-db|terraform')
+  local dangerous=$(echo $fullcommand | grep -E 'delete|edit|remove|rds|apply|deploy|uninstall|dump-db|terraform')
 
-  if [[ -n "$is_prod" ]] && [[ -n "$dangerous" ]]; then
+  if [[ -n "$is_prod" ]] && [[ -n "$dangerous" ]] && [[ -z "$YES_I_KNOW" ]]; then
     printf "\e[1m\e[5m\e[40m\e[31m DANGER PROD CMD \e[47m\e[30m ${fullcommand} \e[40m\e[31m [yN]? \e[37m"
     read -r reply
     [[ "$reply" =~ ^[Yy]$ ]] && eval $fullcommand || printf '\n'
