@@ -22,6 +22,7 @@ if OS.mac?
 end
 
 brew 'ack'
-brew 'openssl'
+brew 'elvish'
 brew 'mise'
 brew 'neovim'
+brew 'openssl'
