@@ -86,11 +86,11 @@ zart_set_context() {
 
 zart() {
   case "$1" in
-    set-context|context|set)
+    set-context|context|set|use)
       zart_set_context "$2"
       return $?
       ;;
-    remove-context|rm)
+    remove-context|clear)
       rm -f "${ZART_DIR}/context"
       return 0
       ;;
@@ -112,6 +112,8 @@ zart() {
     shift || true
   fi
 
+  is_prod="$(echo $account | grep 'prod')"
+
   # Shorten argument aliases
   typeset -A as
   as[k]="kubectl"
@@ -132,11 +134,21 @@ zart() {
     done
   done
 
+  local fullcommand
   # Use "$CMD" only if set, otherwise default to empty
   if [[ -n "$CMD" ]]; then
-    art --on "$account" --region "$region" "$CMD" "${fullargs[@]}"
+    fullcommand="art --on $account --region $region $CMD ${fullargs[@]}"
   else
-    art --on "$account" --region "$region" "${fullargs[@]}"
+    fullcommand="art --on $account --region $region ${fullargs[@]}"
+  fi
+  local dangerous=$(echo $fullcommand | grep -E 'delete|edit|remove|rds|apply|deploy|uninstall|dump-db|terraform')
+
+  if [[ -n "$is_prod" ]] && [[ -n "$dangerous" ]] && [[ -z "$YES_I_KNOW" ]]; then
+    printf "\e[1m\e[5m\e[40m\e[31m DANGER PROD CMD \e[47m\e[30m ${fullcommand} \e[40m\e[31m [yN]? \e[37m"
+    read -r reply
+    [[ "$reply" =~ ^[Yy]$ ]] && eval $fullcommand || printf '\n'
+  else
+    eval $fullcommand
   fi
 }
 

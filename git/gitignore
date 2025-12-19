@@ -187,3 +187,6 @@ docode/src/pkg/
 
 # asdf version
 .tool-versions
+
+# mise version
+mise.toml
