@@ -1,5 +1,4 @@
 if OS.mac?
-  brew 'ack'
   brew 'binutils'
   brew 'coreutils'
   brew 'git'
@@ -9,7 +8,6 @@ if OS.mac?
   brew 'libyaml'
   brew 'multitail'
   brew 'nushell'
-  brew 'openssl'
   brew 'pre-commit'
   brew 'readline'
   brew 'sqlite'
@@ -22,5 +20,7 @@ if OS.mac?
   cask 'wireshark'
 end
 
+brew 'ack'
+brew 'openssl'
 brew 'mise'
 cask 'zed'
