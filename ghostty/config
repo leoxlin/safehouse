@@ -29,11 +29,11 @@ keybind = ctrl+shift+arrow_up=goto_split:up
 keybind = ctrl+shift+arrow_down=goto_split:down
 
 # Use ctrl instead of super for tab management
-keybind = ctrl+t=new_tab
-keybind = ctrl+w=close_tab:this
-keybind = ctrl+k=clear_screen
-keybind = ctrl+n=new_window
-keybind = ctrl+q=close_window
+keybind = ctrl+a>k=clear_screen
+keybind = ctrl+a>c=new_tab
+keybind = ctrl+a>x=close_tab:this
+keybind = ctrl+a>n=next_tab
+keybind = ctrl+a>p=previous_tab
 
 # Remap tab shortcuts as well
 keybind = ctrl+1=goto_tab:1
