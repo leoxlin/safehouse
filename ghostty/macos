@@ -1,4 +1,4 @@
 # (macos) *> ~/.config/ghostty/system
 
+keybind = super+shift+r=reload_config
 keybind = performable:ctrl+c=copy_to_clipboard
-
