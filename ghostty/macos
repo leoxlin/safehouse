@@ -1,2 +1,13 @@
 # (macos) *> ~/.config/ghostty/system
 
+keybind = ctrl+shift+r=reload_config
+keybind = performable:ctrl+c=copy_to_clipboard
+
+keybind = super+shift+arrow_left=new_split:left
+keybind = super+shift+arrow_right=new_split:right
+keybind = super+shift+arrow_up=new_split:up
+keybind = super+shift+arrow_down=new_split:down
+keybind = super+arrow_left=goto_split:left
+keybind = super+arrow_right=goto_split:right
+keybind = super+arrow_up=goto_split:up
+keybind = super+arrow_down=goto_split:down

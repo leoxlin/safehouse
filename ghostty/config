@@ -1,6 +1,9 @@
 # *> ~/.config/ghostty/config
 
 theme = "Smyck"
+macos-titlebar-style = tabs
+copy-on-select = clipboard
+bell-features = no-system,no-audio,no-attention,no-title,no-border
 
 # Load system configs specific to OS
 config-file = ?system
