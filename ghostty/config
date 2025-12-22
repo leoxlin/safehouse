@@ -9,8 +9,8 @@ selection-background = #232a2d
 macos-titlebar-style = tabs
 macos-titlebar-proxy-icon = hidden
 
-# Stop the annoying bell
 bell-features = no-system,no-audio,no-attention,no-title,no-border
+unfocused-split-opacity = 1
 
 # More natural copy paste but preserve SIGINT
 # ctrl+c sends SIGINT if nothing to copy
