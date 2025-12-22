@@ -1,2 +1,4 @@
 # (macos) *> ~/.config/ghostty/system
 
+keybind = performable:ctrl+c=copy_to_clipboard
+
