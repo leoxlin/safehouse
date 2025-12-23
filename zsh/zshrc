@@ -27,6 +27,7 @@ fi
 
 [ -e "$HOME/Tools" ] && export PATH="$HOME/Tools:$PATH"
 [ -e "$HOME/.opencode" ] && export PATH="$HOME/.opencode/bin:$PATH"
+[ -e "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 [ -e "/opt/homebrew/opt/ruby/bin" ] && export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 [ -e "/home/linuxbrew/.linuxbrew/bin" ] && export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 

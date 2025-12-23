@@ -189,4 +189,4 @@ docode/src/pkg/
 .tool-versions
 
 # mise version
-mise.toml
+mise.local.toml

@@ -1,0 +1,27 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-1": "workspace::ToggleLeftDock",
+      "ctrl-b": "editor::GoToDefinition",
+      "ctrl-f": "buffer_search::Deploy",
+      "ctrl-r": "buffer_search::DeployReplace",
+      "ctrl-a": "editor::SelectAll",
+      "ctrl-c": "editor::Copy",
+      "ctrl-v": "editor::Paste",
+    },
+  },
+  {
+    "context": "VimControl",
+    "bindings": {
+      "ctrl-w": "pane::CloseActiveItem",
+    },
+  },
+]
