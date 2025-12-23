@@ -6,16 +6,39 @@
 // To see the default key bindings run `zed: open default keymap`
 // from the command palette.
 [
+  // This keymap.json is meant to be used with the karabiner configs
+  // The cmd key is mapped to ctrl in some cases to keep the key bindings
+  // consistent between Linux and OSX
+  {
+    "use_key_equivalents": true,
+    "bindings": {
+      "ctrl-=": ["zed::IncreaseBufferFontSize", { "persist": false }],
+      "ctrl-+": ["zed::IncreaseBufferFontSize", { "persist": false }],
+      "ctrl--": ["zed::DecreaseBufferFontSize", { "persist": false }],
+      "ctrl-0": ["zed::ResetBufferFontSize", { "persist": false }],
+      "ctrl-o": "file_finder::Toggle",
+      "ctrl-shift-o": ["projects::OpenRecent", { "create_new_window": false }],
+      "ctrl-q": "zed::Quit",
+      "ctrl-s": "workspace::Save",
+      "ctrl-w": "workspace::CloseWindow",
+      "ctrl-n": "workspace::ToggleLeftDock",
+    },
+  },
   {
     "context": "Editor",
     "bindings": {
-      "ctrl-1": "workspace::ToggleLeftDock",
       "ctrl-b": "editor::GoToDefinition",
       "ctrl-f": "buffer_search::Deploy",
       "ctrl-r": "buffer_search::DeployReplace",
       "ctrl-a": "editor::SelectAll",
       "ctrl-c": "editor::Copy",
       "ctrl-v": "editor::Paste",
+      "ctrl-x": "editor::Cut",
+      "ctrl-z": "editor::Undo",
+      "ctrl-shift-z": "editor::Redo",
+      "ctrl-/": ["editor::ToggleComments", { "advance_downwards": false }],
+      "ctrl-[": "editor::Outdent",
+      "ctrl-]": "editor::Indent",
     },
   },
   {
