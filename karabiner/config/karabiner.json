@@ -12,7 +12,10 @@
             "manipulators": [
               {
                 "type": "basic",
-                "conditions": [ { "bundle_identifiers": [ "^com\\.mitchellh\\.ghostty$" ], "type": "frontmost_application_if" } ],
+                "conditions": [ { "type": "frontmost_application_if", "bundle_identifiers": [
+                  "^com\\.mitchellh\\.ghostty$",
+                  "^dev\\.zed\\.Zed$"
+                ] } ],
                 "from": { "key_code": "left_option", "modifiers": { "mandatory": ["left_control"] }},
                 "to": [
                   { "key_code": "left_option", "modifiers": ["left_command"], "lazy": true }
@@ -20,7 +23,10 @@
               },
               {
                 "type": "basic",
-                "conditions": [ { "bundle_identifiers": [ "^com\\.mitchellh\\.ghostty$" ], "type": "frontmost_application_if" } ],
+                "conditions": [ { "type": "frontmost_application_if", "bundle_identifiers": [
+                  "^com\\.mitchellh\\.ghostty$",
+                  "^dev\\.zed\\.Zed$"
+                ] } ],
                 "from": { "key_code": "left_control", "modifiers": { "mandatory": ["left_control"] }},
                 "to": [
                   { "key_code": "left_control", "modifiers": ["left_command"], "lazy": true }
@@ -28,7 +34,10 @@
               },
               {
                 "type": "basic",
-                "conditions": [ { "bundle_identifiers": [ "^com\\.mitchellh\\.ghostty$" ], "type": "frontmost_application_if" } ],
+                "conditions": [ { "type": "frontmost_application_if", "bundle_identifiers": [
+                  "^com\\.mitchellh\\.ghostty$",
+                  "^dev\\.zed\\.Zed$"
+                ] } ],
                 "from": { "key_code": "left_command", "modifiers": { "optional": ["shift"] }},
                 "to": [
                   {
