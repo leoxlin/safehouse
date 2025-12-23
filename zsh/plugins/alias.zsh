@@ -85,9 +85,6 @@ alias kt='kubectl logs -f'
 alias ksn='kubectl config set-context $(kubectl config current-context) --namespace'
 alias kh='list_alias_starts_with k'
 
-alias zed='zeditor'
-alias vim='nvim'
-
 # Linux Overrides
 if ! [ `command -v pbcopy` ]; then
   alias pbcopy='xsel --clipboard --input'
