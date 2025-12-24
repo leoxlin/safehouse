@@ -1,21 +1,21 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-YAML_FILE="$SCRIPT_DIR/dot.yml"
-HOME_DIR="$HOME"
+readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+readonly YAML_FILE="${SCRIPT_DIR}/dot.yml"
+readonly HOME_DIR="${HOME}"
 
 # Colors for output
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-NC='\033[0m' # No Color
+readonly RED='\033[0;31m'
+readonly GREEN='\033[0;32m'
+readonly YELLOW='\033[1;33m'
+readonly BLUE='\033[0;34m'
+readonly NC='\033[0m' # No Color
 
 DRY_RUN=true
 
-if [[ "$1" == "apply" ]]; then
+if [[ "${1:-}" == "apply" ]]; then
     DRY_RUN=false
 fi
 
@@ -106,7 +106,7 @@ echo "Dotfiles symlink manager"
 echo "========================"
 echo ""
 
-if [[ "$DRY_RUN" == "true" ]]; then
+if [[ "${DRY_RUN}" == "true" ]]; then
     echo "Mode: DRY RUN (use 'apply' argument to actually create symlinks)"
 else
     echo "Mode: APPLY (creating symlinks)"
@@ -114,33 +114,33 @@ fi
 echo ""
 
 # Get all config types (top-level keys)
-config_types=$(yq eval 'keys | .[]' "$YAML_FILE")
+config_types=$(yq eval 'keys | .[]' "${YAML_FILE}")
 
 while IFS= read -r config_type; do
     # Check if the value is a string (direct mapping)
-    if yq eval ".$config_type | type" "$YAML_FILE" | grep -q "!!str"; then
+    if yq eval ".${config_type} | type" "${YAML_FILE}" | grep -q "!!str"; then
         # Direct mapping: config_type -> destination
-        dest_path=$(yq eval ".$config_type" "$YAML_FILE")
-        source_path="$SCRIPT_DIR/$config_type"
-        dest_full="$HOME_DIR/$dest_path"
+        dest_path=$(yq eval ".${config_type}" "${YAML_FILE}")
+        source_path="${SCRIPT_DIR}/${config_type}"
+        dest_full="${HOME_DIR}/${dest_path}"
 
-        create_symlink "$source_path" "$dest_full" "$DRY_RUN"
+        create_symlink "${source_path}" "${dest_full}" "${DRY_RUN}"
     else
         # Nested mapping: iterate through keys
-        items=$(yq eval ".$config_type | keys | .[]" "$YAML_FILE")
+        items=$(yq eval ".${config_type} | keys | .[]" "${YAML_FILE}")
 
         while IFS= read -r item; do
-            dest_path=$(yq eval ".$config_type.$item" "$YAML_FILE")
-            source_path="$SCRIPT_DIR/$config_type/$item"
-            dest_full="$HOME_DIR/$dest_path"
+            dest_path=$(yq eval ".${config_type}.${item}" "${YAML_FILE}")
+            source_path="${SCRIPT_DIR}/${config_type}/${item}"
+            dest_full="${HOME_DIR}/${dest_path}"
 
-            create_symlink "$source_path" "$dest_full" "$DRY_RUN"
-        done <<< "$items"
+            create_symlink "${source_path}" "${dest_full}" "${DRY_RUN}"
+        done <<< "${items}"
     fi
-done <<< "$config_types"
+done <<< "${config_types}"
 
 echo ""
-if [[ "$DRY_RUN" == "true" ]]; then
+if [[ "${DRY_RUN}" == "true" ]]; then
     echo "Dry run complete. Run with 'apply' to make changes."
 else
     echo "Symlinks created successfully!"
