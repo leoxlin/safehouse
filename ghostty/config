@@ -8,8 +8,12 @@ selection-background = #232a2d
 # OSX specific configs
 macos-titlebar-style = tabs
 macos-titlebar-proxy-icon = hidden
+gtk-titlebar-style = tabs
+gtk-toolbar-style = raised
 
 bell-features = no-system,no-audio,no-attention,no-title,no-border
+desktop-notifications = false
+
 unfocused-split-opacity = 1
 
 # More natural copy paste but preserve SIGINT
@@ -29,11 +33,11 @@ keybind = ctrl+shift+arrow_up=goto_split:up
 keybind = ctrl+shift+arrow_down=goto_split:down
 
 # Use ctrl instead of super for tab management
-keybind = ctrl+a>k=clear_screen
-keybind = ctrl+a>c=new_tab
-keybind = ctrl+a>x=close_tab:this
-keybind = ctrl+a>n=next_tab
-keybind = ctrl+a>p=previous_tab
+keybind = ctrl+k=clear_screen
+keybind = ctrl+t=new_tab
+keybind = ctrl+w=close_tab:this
+keybind = ctrl+arrow_right=next_tab
+keybind = ctrl+arrow_left=previous_tab
 
 # Remap tab shortcuts as well
 keybind = ctrl+1=goto_tab:1
