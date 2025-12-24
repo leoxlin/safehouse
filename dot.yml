@@ -3,6 +3,8 @@ asdf:
   asdfrc: .asdfrc
   tool-versions: .tool-versions
 
+browsh: .config/browsh
+
 ghostty: .config/ghostty
 
 git:
