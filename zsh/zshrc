@@ -1,5 +1,3 @@
-# *> ~/.zshrc
-
 ZSH=$HOME/.zsh/ohmyzsh
 ZSH_CUSTOM=$HOME/.zsh/themes
 if [[ "$(hostname)" =~ "articulate" ]]; then

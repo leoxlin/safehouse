@@ -1,4 +1,3 @@
-# *> ~/.pythonrc
 import atexit
 import os
 import readline

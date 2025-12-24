@@ -1,5 +1,4 @@
 # vim: set expandtab! :
-# *> ~/.gitconfig
 [core]
 	editor = vim
 	hooksPath = ~/.githooks

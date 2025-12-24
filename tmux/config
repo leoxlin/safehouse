@@ -1,5 +1,5 @@
-# *> ~/.tmux.conf
 # Change bind key to C-a in combination of using C-w for vim
+
 set -g prefix2 C-a
 bind-key a send-prefix -2 # Jump to beginning of line
 bind r source-file ~/.tmux.conf \; display-message "Config reloaded..."

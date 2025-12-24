@@ -1,0 +1,37 @@
+asdf:
+  asdf-setup: .local/bin/asdf-setup
+  asdfrc: .asdfrc
+  tool-versions: .tool-versions
+
+ghostty: .config/ghostty
+
+git:
+  githooks: .githooks
+  gitconfig: .gitconfig
+  gitignore: .gitignore
+
+karabiner: .config/karabiner
+
+kitty: .config/kitty
+
+misc:
+  pythonrc: .pythonrc
+
+mise:
+  config.toml: .config/mise/config.toml
+
+nvim: .config/nvim
+
+tmux:
+  config: .tmux.conf
+
+vim:
+  config: .vim/config
+  vimrc: .vimrc
+
+zed: .config/zed
+
+zsh:
+  plugins: .zsh/plugins
+  themes: .zsh/themes
+  zshrc: .zshrc
