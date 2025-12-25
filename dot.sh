@@ -130,7 +130,7 @@ while IFS= read -r config_type; do
         items=$(yq eval ".${config_type} | keys | .[]" "${YAML_FILE}")
 
         while IFS= read -r item; do
-            dest_path=$(yq eval ".${config_type}.${item}" "${YAML_FILE}")
+            dest_path=$(yq eval ".${config_type}.[\"${item}\"]" "${YAML_FILE}")
             source_path="${SCRIPT_DIR}/${config_type}/${item}"
             dest_full="${HOME_DIR}/${dest_path}"
 
