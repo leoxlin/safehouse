@@ -15,7 +15,7 @@ $character"""
 style = "blue"
 
 [character]
-success_symbol = '[λ](bold white)'
+success_symbol = '[λ](bold 195)'
 error_symbol = '[λ](bold red)'
 
 [git_branch]
