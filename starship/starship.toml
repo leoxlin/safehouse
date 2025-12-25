@@ -1,89 +1,42 @@
-# Starship Configuration - Compact and Clean
+"$schema" = 'https://starship.rs/config-schema.json'
 
-# Compact single-line format
 format = """
-$time $directory$git_branch$custom
-$character
-"""
-
-right_format = "$nodejs$python$golang$rust"
-
-[time]
-disabled = false
-format = '[$time]($style)'
-style = 'cyan'
-time_format = '%H:%M'
-
-[hostname]
-ssh_only = false
-disabled = false
-format = "[$hostname](white)"
-trim_at = "-"
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$cmd_duration\
+$line_break\
+$character"""
 
 [directory]
-style = 'yellow'
-truncation_length = 3
-truncate_to_repo = false
-format = '[$path]($style)'
-
-[git_branch]
-format = ' [$symbol$branch]($style)'
-style = 'cyan'
-symbol = ''
-
-[custom.git_clean]
-command = "echo 'o'"
-when = "is-git-clean"
-shell = "zsh"
-format = "[ $output]($style)"
-style = "fg:green"
-
-[custom.git_dirty]
-command = "echo '*'"
-when = "is-git-dirty"
-shell = "zsh"
-format = "[ $output]($style)"
-style = "fg:red"
-
-# Mise-managed language versions (compact display)
-[nodejs]
-format = ' [node:$version]($style)'
-style = 'green'
-detect_extensions = []
-detect_files = ['package.json', '.node-version']
-detect_folders = ['node_modules']
-
-[python]
-format = ' [py:$version]($style)'
-style = 'yellow'
-detect_extensions = []
-detect_files = ['requirements.txt', 'pyproject.toml', '.python-version']
-detect_folders = ['.venv']
-
-[golang]
-format = ' [go:$version]($style)'
-style = 'cyan'
-detect_extensions = []
-detect_files = ['go.mod', 'go.sum']
-detect_folders = []
-
-[rust]
-format = ' [rust:$version]($style)'
-style = 'red'
-detect_extensions = []
-detect_files = ['Cargo.toml', 'Cargo.lock']
-detect_folders = []
+style = "blue"
 
 [character]
-success_symbol = '[λ](bold yellow)'
+success_symbol = '[λ](bold white)'
 error_symbol = '[λ](bold red)'
 
-# Disabled modules for cleaner look
-[kubernetes]
-disabled = true
+[git_branch]
+format = "[$branch]($style)"
+style = "fg:11"
 
-[docker_context]
-disabled = true
+[git_status]
+format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](9) ($ahead_behind$stashed)]($style)"
+style = "cyan"
+conflicted = "​"
+untracked = "​"
+modified = "​"
+staged = "​"
+renamed = "​"
+deleted = "​"
+stashed = "≡"
 
-[package]
-disabled = true
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
+
+[cmd_duration]
+format = "[$duration]($style) "
+style = "yellow"
