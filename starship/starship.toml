@@ -2,7 +2,7 @@
 
 # Compact single-line format
 format = """
-$time $directory$git_branch$git_status
+$time $directory$git_branch$custom
 $character
 """
 
@@ -31,17 +31,19 @@ format = ' [$symbol$branch]($style)'
 style = 'cyan'
 symbol = ''
 
-[git_status]
-format = '([$all_status$ahead_behind]($style))'
-style = 'red'
-modified = '!'
-untracked = '?'
-deleted = '✘'
-staged = '+'
-stashed = '$'
-diverged = '⇕'
-ahead = '⇡'
-behind = '⇣'
+[custom.git_clean]
+command = "echo 'o'"
+when = "is-git-clean"
+shell = "zsh"
+format = "[ $output]($style)"
+style = "fg:green"
+
+[custom.git_dirty]
+command = "echo '*'"
+when = "is-git-dirty"
+shell = "zsh"
+format = "[ $output]($style)"
+style = "fg:red"
 
 # Mise-managed language versions (compact display)
 [nodejs]
