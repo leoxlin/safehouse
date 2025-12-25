@@ -184,8 +184,6 @@ Thumbs.db #thumbnail cache on Windows
 ignoremegit*
 docode/src/pkg/
 
-# asdf version
+# tool version files
 .tool-versions
-
-# mise version
 mise.local.toml

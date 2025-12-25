@@ -1,8 +1,3 @@
-asdf:
-  asdf-setup: .local/bin/asdf-setup
-  asdfrc: .asdfrc
-  tool-versions: .tool-versions
-
 browsh: .config/browsh
 
 ghostty: .config/ghostty
