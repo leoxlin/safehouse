@@ -19,8 +19,7 @@ kitty: .config/kitty
 misc:
   pythonrc: .pythonrc
 
-mise:
-  config.toml: .config/mise/config.toml
+mise: .config/mise
 
 nvim: .config/nvim
 
