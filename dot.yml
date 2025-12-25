@@ -18,6 +18,9 @@ mise: .config/mise
 
 nvim: .config/nvim
 
+starship:
+  starship.toml: .config/starship.toml
+
 tmux:
   config: .tmux.conf
 

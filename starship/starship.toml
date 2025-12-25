@@ -1,0 +1,87 @@
+# Starship Configuration - Compact and Clean
+
+# Compact single-line format
+format = """
+$time $directory$git_branch$git_status
+$character
+"""
+
+right_format = "$nodejs$python$golang$rust"
+
+[time]
+disabled = false
+format = '[$time]($style)'
+style = 'cyan'
+time_format = '%H:%M'
+
+[hostname]
+ssh_only = false
+disabled = false
+format = "[$hostname](white)"
+trim_at = "-"
+
+[directory]
+style = 'yellow'
+truncation_length = 3
+truncate_to_repo = false
+format = '[$path]($style)'
+
+[git_branch]
+format = ' [$symbol$branch]($style)'
+style = 'cyan'
+symbol = ''
+
+[git_status]
+format = '([$all_status$ahead_behind]($style))'
+style = 'red'
+modified = '!'
+untracked = '?'
+deleted = '✘'
+staged = '+'
+stashed = '$'
+diverged = '⇕'
+ahead = '⇡'
+behind = '⇣'
+
+# Mise-managed language versions (compact display)
+[nodejs]
+format = ' [node:$version]($style)'
+style = 'green'
+detect_extensions = []
+detect_files = ['package.json', '.node-version']
+detect_folders = ['node_modules']
+
+[python]
+format = ' [py:$version]($style)'
+style = 'yellow'
+detect_extensions = []
+detect_files = ['requirements.txt', 'pyproject.toml', '.python-version']
+detect_folders = ['.venv']
+
+[golang]
+format = ' [go:$version]($style)'
+style = 'cyan'
+detect_extensions = []
+detect_files = ['go.mod', 'go.sum']
+detect_folders = []
+
+[rust]
+format = ' [rust:$version]($style)'
+style = 'red'
+detect_extensions = []
+detect_files = ['Cargo.toml', 'Cargo.lock']
+detect_folders = []
+
+[character]
+success_symbol = '[λ](bold yellow)'
+error_symbol = '[λ](bold red)'
+
+# Disabled modules for cleaner look
+[kubernetes]
+disabled = true
+
+[docker_context]
+disabled = true
+
+[package]
+disabled = true

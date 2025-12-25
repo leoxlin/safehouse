@@ -8,16 +8,6 @@ readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "Setting up dotfiles..."
 
-# Setup Oh-My-Zsh
-mkdir -p "${ZSH_DIR}"
-if [[ ! -e "${ZSH_DIR}/ohmyzsh" ]]; then
-  echo "Installing Oh-My-Zsh..."
-  git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh.git "${ZSH_DIR}/ohmyzsh" || {
-    echo "Failed to clone Oh-My-Zsh"
-    exit 1
-  }
-fi
-
 # Setup Vundle for Vim
 mkdir -p "${VIM_BUNDLE}"
 if [[ ! -e "${VIM_BUNDLE}/Vundle.vim" ]]; then

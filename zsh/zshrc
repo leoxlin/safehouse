@@ -1,19 +1,13 @@
-ZSH=$HOME/.zsh/ohmyzsh
-ZSH_CUSTOM=$HOME/.zsh/themes
-if [[ "$(hostname)" =~ "articulate" ]]; then
-  ZSH_THEME="work"
-else
-  ZSH_THEME="home"
-fi
-ZSH_DISABLE_COMPFIX="true"
-ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
-DISABLE_AUTO_UPDATE="true"
-HYPHEN_INSENSITIVE="true"
+# Zsh configuration
+export EDITOR=vim
 PROMPT_EOL_MARK=''
 
-plugins=(git python pip virtualenv)
-source $ZSH/oh-my-zsh.sh
-export EDITOR=vim
+# Enable Zsh completions
+autoload -Uz compinit
+compinit -d ~/.zsh/cache/.zcompdump-$HOST
+
+# Case-insensitive completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
 if [ -e "/opt/homebrew" ]; then
   export PATH="/opt/homebrew/bin:$PATH"
@@ -40,3 +34,8 @@ done
 command -v keychain > /dev/null && keychain -q ~/.ssh/id_ed25519
 command -v zeditor > /dev/null && alias zed='zeditor'
 command -v nvim > /dev/null && alias vim='nvim'
+
+# Initialize Starship prompt
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi
