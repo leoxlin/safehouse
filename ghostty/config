@@ -2,6 +2,7 @@
 
 theme = "Everblush"
 selection-background = #232a2d
+unfocused-split-opacity = 1
 
 # OSX specific configs
 macos-titlebar-style = tabs
@@ -9,10 +10,12 @@ macos-titlebar-proxy-icon = hidden
 gtk-titlebar-style = tabs
 gtk-toolbar-style = raised
 
+# Disable notifications
 bell-features = no-system,no-audio,no-attention,no-title,no-border
 desktop-notifications = false
 
-unfocused-split-opacity = 1
+# Bind shift enter to work properly
+keybind = shift+enter=text:\n
 
 # More natural copy paste but preserve SIGINT
 # ctrl+c sends SIGINT if nothing to copy
