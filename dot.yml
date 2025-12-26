@@ -22,6 +22,7 @@ starship:
   starship.toml: .config/starship.toml
   is-git-clean: .local/bin/is-git-clean
   is-git-dirty: .local/bin/is-git-dirty
+  entrypoint: .local/bin/entrypoint
 
 tmux:
   config: .tmux.conf

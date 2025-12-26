@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Determine Homebrew path
+if [[ "$(uname)" == "Darwin" ]]; then
+  readonly BREW_PATH="/opt/homebrew/bin"
+else
+  readonly BREW_PATH="/home/linuxbrew/.linuxbrew/bin"
+fi
+
+if [[ -f "$BREW_PATH/nu" ]]; then
+  $BREW_PATH/nu
+else if [[ -f "$BREW_PATH/fish" ]] then
+  $BREW_PATH/zsh
+else
+  /usr/bin/zsh
+fi
