@@ -16,6 +16,8 @@ misc:
 
 mise: .config/mise
 
+nushell: .config/nushell
+
 nvim: .config/nvim
 
 starship:
