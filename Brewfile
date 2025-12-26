@@ -11,7 +11,6 @@ if OS.mac?
   cask 'zed'
 end
 
-brew 'ack'
 brew 'bandwhich'
 brew 'bat'
 brew 'ctop'

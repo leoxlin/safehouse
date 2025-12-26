@@ -41,6 +41,8 @@ alias ..='cd ..'
 alias ...='cd .. && cd ..'
 alias rmrf='rm -rf'
 
+alias ack='rg'
+
 # Git
 alias g='git'
 alias gst='git status'

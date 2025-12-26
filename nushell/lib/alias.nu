@@ -17,6 +17,8 @@ alias rmrf = rm -rf
 alias g = git
 alias gst = git status
 
+alias ack = rg
+
 alias t = if (which tofu | is-not-empty) { tofu } else { terraform }
 alias tf = if (which tofu | is-not-empty) { tofu } else { terraform }
 
