@@ -82,7 +82,6 @@ alias ke='kubectl exec -ti'
 alias kc='kubectl create -f'
 alias kr='kubectl replace -f'
 alias kt='kubectl logs -f'
-alias ksn='kubectl config set-context $(kubectl config current-context) --namespace'
 alias kh='list_alias_starts_with k'
 
 # Linux Overrides

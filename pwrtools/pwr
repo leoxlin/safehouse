@@ -1,9 +1,0 @@
-#!/bin/bash
-# *> ~/.local/bin/pwr
-# Setup a simple environment to run some powerful tools
-
-SCRIPT=$1
-shift
-PYTHONPATH="$HOME/.config/pwrtools:$PYTHONPATH" \
-  python3 $HOME/.config/pwrtools/$SCRIPT.py $@
-

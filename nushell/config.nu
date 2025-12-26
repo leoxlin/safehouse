@@ -37,7 +37,16 @@ $env.config = {
     }
 }
 
-if (which pbcopy | is-empty) and (which xsel | is-not-empty) { alias pbcopy = xsel --clipboard --input }
+def pbcopy [] {
+  let input = $in
+  if (which xsel | is-not-empty) {
+    $input | xsel --clipboard --input
+  } else if (which pbcopy | is-not-empty) {
+    $input | ^pbcopy
+  } else {
+    error make {msg: "Neither pbcopy nor xsel found"}
+  }
+}
 
 if ((which zeditor | is-not-empty) and (which zed | is-empty)) {
   which zeditor | select path | each { |v| ln -s $"($v.path)" ~/.local/bin/zed }
