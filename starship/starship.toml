@@ -1,6 +1,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
+$shell\
 $directory\
 $git_branch\
 $git_state\
@@ -37,3 +38,11 @@ style = "bright-black"
 [cmd_duration]
 format = "[$duration]($style) "
 style = "yellow"
+
+[shell]
+disabled = false
+bash_indicator = "💩"
+fish_indicator = "🐟"
+zsh_indicator = "💤"
+nu_indicator = "🍂"
+format = "[$indicator]($style) "
