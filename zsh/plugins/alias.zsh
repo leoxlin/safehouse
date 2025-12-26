@@ -62,10 +62,6 @@ alias upper="tr '[:lower:]' '[:upper:]'"
 
 # Python
 alias pi='pip install -r requirements.txt'
-alias pe='pyenv'
-alias per='pyenv rehash'
-alias pev='pyenv version'
-alias pvs='pyenv versions'
 alias ph='list_alias_starts_with p'
 
 # Kubectl

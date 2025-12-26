@@ -19,10 +19,17 @@ if OS.mac?
 end
 
 brew 'ack'
+brew 'bat'
+brew 'delta'
+brew 'eza'
+brew 'fd'
+brew 'fzf'
 brew 'mise'
 brew 'neovim'
 brew 'nushell'
 brew 'openssl'
+brew 'ripgrep'
 brew 'starship'
 brew 'tmux'
 brew 'vim'
+brew 'zoxide'
