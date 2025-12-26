@@ -9,7 +9,7 @@ fi
 
 if [[ -f "$BREW_PATH/nu" ]]; then
   $BREW_PATH/nu
-elif [[ -f "$BREW_PATH/fish" ]]; then
+elif [[ -f "$BREW_PATH/zsh" ]]; then
   $BREW_PATH/zsh
 else
   /usr/bin/zsh
