@@ -4,10 +4,10 @@
 browsh_supporter = "I have shown my support for Browsh"
 
 # The page to show at startup. Browsh will fail to boot if this URL is not accessible
-startup-url = "http://www.brow.sh"
+startup-url = "https://rss.hydrahmlb.cc/"
 
 # The base query when a non-URL is entered into the URL bar
-default_search_engine_base = "https://www.google.com/search?q="
+default_search_engine_base = "https://kagi.com/search?q="
 
 # The mobile user agent for forcing web pages to use their mobile layout
 mobile_user_agent = "Mozilla/5.0 (Android 7.0; Mobile; rv:54.0) Gecko/58.0 Firefox/58.0"
