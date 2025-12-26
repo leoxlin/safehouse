@@ -7,21 +7,22 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "tab_size": 2,
   "use_system_prompts": true,
   "diagnostics": {
-    "include_warnings": false
+    "include_warnings": false,
   },
   "diagnostics_max_severity": "error",
   "disable_ai": true,
   "telemetry": {
     "diagnostics": false,
-    "metrics": false
+    "metrics": false,
   },
   "vim_mode": true,
   "icon_theme": {
     "mode": "dark",
     "light": "JetBrains New UI Icons (Light)",
-    "dark": "JetBrains New UI Icons (Dark)"
+    "dark": "JetBrains New UI Icons (Dark)",
   },
   "base_keymap": "VSCode",
   "ui_font_size": 16,
@@ -31,22 +32,22 @@
     "detect_venv": {
       "on": {
         "directories": [".env", "env", ".venv", "venv"],
-        "activate_script": "default"
-      }
-    }
+        "activate_script": "default",
+      },
+    },
   },
   "theme_overrides": {
     "JetBrains Dark": {
-      "icon": "#b0b1b3"
-    }
+      "icon": "#b0b1b3",
+    },
   },
   "lsp": {
     "yaml-language-server": {
       "settings": {
         "yaml": {
-          "customTags": ["!env_var"]
-        }
-      }
-    }
-  }
+          "customTags": ["!env_var"],
+        },
+      },
+    },
+  },
 }
