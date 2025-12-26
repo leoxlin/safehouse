@@ -57,9 +57,21 @@
 [pager]
 	branch = false
 	tag = false
+	diff = delta
+	log = delta
+	reflog = delta
+	show = delta
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [gpg]
 	format = ssh
+[delta]
+	navigate = true
+	light = false
+	line-numbers = true
+	side-by-side = false
+	syntax-theme = Nord
+[interactive]
+	diffFilter = delta --color-only
 [includeIf "hasconfig:remote.*.url:git@github.com:articulate/**"]
     path = ~/.gitconfig-articulate

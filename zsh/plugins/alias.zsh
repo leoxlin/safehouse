@@ -15,10 +15,28 @@ function list_alias_starts_with() {
 # Shell aliases
 alias quit='exit'
 alias reload='source ~/.zshrc'
-alias ls='ls --color=auto -X'
-alias la='ls -A'
-alias ll='ls -Al'
-alias l='ls -F'
+
+# Modern CLI tools
+if command -v eza 1>/dev/null 2>&1; then
+  alias ls='eza --color=auto --group-directories-first'
+  alias la='eza -a'
+  alias ll='eza -la'
+  alias l='eza'
+else
+  alias ls='ls --color=auto -X'
+  alias la='ls -A'
+  alias ll='ls -Al'
+  alias l='ls -F'
+fi
+
+if command -v bat 1>/dev/null 2>&1; then
+  alias cat='bat'
+fi
+
+if command -v fd 1>/dev/null 2>&1; then
+  alias find='fd'
+fi
+
 alias ..='cd ..'
 alias ...='cd .. && cd ..'
 alias rmrf='rm -rf'

@@ -63,12 +63,6 @@ source ~/.config/nushell/lib/ssh.nu
 # Tools integration - Setup various tools and integrations
 # ============================================================================
 
-# Mise activation
-if (which mise | is-not-empty) {
-  source ~/.config/nushell/plugins/mise.nu
-}
-
-# Starship prompt
-if (which starship | is-not-empty) {
-  source ~/.config/nushell/plugins/starship.nu
-}
+source ~/.config/nushell/plugins/mise.nu
+source ~/.config/nushell/plugins/zoxide.nu
+source ~/.config/nushell/plugins/starship.nu
