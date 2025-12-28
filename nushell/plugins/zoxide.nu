@@ -19,8 +19,6 @@ def --env __zoxide_zi [...rest:string] {
 # Aliases
 alias z = __zoxide_z
 alias zi = __zoxide_zi
-alias cd = __zoxide_z
-alias cdi = __zoxide_zi
 
 # Hook to add directories to zoxide
 $env.config = ($env.config | upsert hooks {
