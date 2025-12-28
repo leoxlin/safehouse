@@ -47,6 +47,7 @@ echo "Setting up mise..."
   echo "Failed to trust mise config"
   exit 1
 }
+"${BREW_PATH}/mise" plugins install ruby https://github.com/asdf-vm/asdf-ruby
 "${BREW_PATH}/mise" install || {
   echo "Failed to install mise tools"
   exit 1
