@@ -187,3 +187,6 @@ docode/src/pkg/
 # tool version files
 .tool-versions
 mise.local.toml
+
+# local zed configs
+.zed
