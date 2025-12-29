@@ -15,6 +15,7 @@
   },
   "diagnostics_max_severity": "error",
   "disable_ai": true,
+  "load_direnv": "shell_hook",
   "telemetry": {
     "diagnostics": false,
     "metrics": false,
@@ -30,9 +31,7 @@
   "buffer_font_size": 15,
   "theme": "JetBrains Dark",
   "terminal": {
-    "shell": {
-      "program": "/usr/local/bin/shell-entrypoint",
-    },
+    "shell": "system",
     "detect_venv": {
       "on": {
         "directories": [".env", "env", ".venv", "venv"],
