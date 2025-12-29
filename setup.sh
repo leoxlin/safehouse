@@ -53,4 +53,6 @@ echo "Setting up mise..."
   exit 1
 }
 
+sudo ln -s $(pwd)/shell-entrypoint /usr/local/bin/shell-entrypoint
+
 echo "Setup complete!"

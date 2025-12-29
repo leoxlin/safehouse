@@ -29,6 +29,9 @@
   "buffer_font_size": 15,
   "theme": "JetBrains Dark",
   "terminal": {
+    "shell": {
+      "program": "/usr/local/bin/shell-entrypoint",
+    },
     "detect_venv": {
       "on": {
         "directories": [".env", "env", ".venv", "venv"],
