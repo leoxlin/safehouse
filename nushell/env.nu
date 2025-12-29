@@ -5,17 +5,16 @@ $env.config.buffer_editor = 'vim'
 # PATH modifications
 def add_paths [] {
   let paths = [
+    ($env.HOME | path join 'Tools')
+    ($env.HOME | path join '.local' 'bin')
+    ($env.HOME | path join '.go' 'gopath' 'bin')
+    '/usr/local/opt/go/libexec/bin'
     '/opt/homebrew/opt/coreutils/libexec/gnubin'
     '/opt/homebrew/opt/binutils/bin'
     '/opt/homebrew/opt/bzip2/bin'
     '/opt/homebrew/opt/gnu-sed/libexec/gnubin'
     '/opt/homebrew/bin'
     '/home/linuxbrew/.linuxbrew/bin'
-    '/usr/local/opt/go/libexec/bin'
-    ($env.HOME | path join 'Tools')
-    ($env.HOME | path join '.opencode' 'bin')
-    ($env.HOME | path join '.local' 'bin')
-    ($env.HOME | path join '.go' 'gopath' 'bin')
     $env.PATH
   ] | flatten
 
