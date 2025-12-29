@@ -35,7 +35,7 @@ if `command -v zeditor > /dev/null` && [[ ! -f ~/.local/bin/zed ]]; then
     ln -s "$(command -v zeditor)" ~/.local/bin/zed
 fi
 
-if `command -v nvim > /dev/null` && [[ ! -f ~/.local/bin/zed ]]; then
+if `command -v nvim > /dev/null` && [[ ! -f ~/.local/bin/nvim ]]; then
     ln -s "$(command -v nvim)" ~/.local/bin/nvim
 fi
 
