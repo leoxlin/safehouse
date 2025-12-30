@@ -6,10 +6,6 @@ alias la = if (which eza | is-not-empty) { eza -a } else { ls --all }
 alias ll = if (which eza | is-not-empty) { eza -la } else { ls --all --long }
 alias l = if (which eza | is-not-empty) { eza } else { ls }
 
-# Wrap external commands with ^ prefix to avoid conflicts
-def --wrapped cat [...rest] { if (which bat | is-not-empty) { bat ...$rest } else { ^cat ...$rest } }
-def --wrapped find [...rest] { if (which fd | is-not-empty) { fd ...$rest } else { ^find ...$rest } }
-
 alias .. = cd ..
 alias ... = cd ../..
 alias rmrf = rm -rf
