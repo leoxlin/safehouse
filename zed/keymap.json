@@ -68,4 +68,14 @@
       "ctrl-alt-shift-f": "project_panel::NewSearchInDirectory",
     },
   },
+  {
+    "context": "Terminal",
+    "use_key_equivalents": true,
+    "bindings": {
+      "ctrl-c": "terminal::Copy",
+      "ctrl-v": "terminal::Paste",
+      "ctrl-f": "buffer_search::Deploy",
+      "ctrl-k": "terminal::Clear",
+    },
+  },
 ]
