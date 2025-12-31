@@ -6,6 +6,15 @@ readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly YAML_FILE="${SCRIPT_DIR}/dot.yml"
 readonly HOME_DIR="${HOME}"
 
+# Determine Homebrew path
+if [[ "$(uname)" == "Darwin" ]]; then
+  readonly BREW_PATH="/opt/homebrew/bin"
+else
+  readonly BREW_PATH="/home/linuxbrew/.linuxbrew/bin"
+fi
+
+export PATH="${BREW_PATH}:${PATH}"
+
 # Colors for output
 readonly RED='\033[0;31m'
 readonly GREEN='\033[0;32m'
