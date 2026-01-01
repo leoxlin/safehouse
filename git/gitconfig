@@ -1,75 +1,74 @@
-# vim: set expandtab! :
 [core]
-	editor = vim
-	hooksPath = ~/.githooks
-	excludesfile = ~/.gitignore
-	bigFileThreshold = 1g
+  editor = vim
+  hooksPath = ~/.githooks
+  excludesfile = ~/.gitignore
+  bigFileThreshold = 1g
 [alias]
-	# Power aliases
-	ap = add -p
-	bn = symbolic-ref --short HEAD
-	cm = commit
-	co = checkout
-	cp = cherry-pick
-	br = branch
-	rb = rebase
-	st = status
-	rl = reflog
-	sh = stash
-	ft = fetch --all --tags --prune
-	l = log
-	ll = log --graph --oneline
-	lll = log --all --graph --pretty=format:'%C(auto)%h%C(auto)%d %s %C(dim cyan)(%aN, %ar)'
-	del = branch -D
-	hash = rev-parse --short HEAD
-	# Extra commands
-	last = log -1 HEAD
-	root = rev-parse --show-toplevel
-	empty = commit --allow-empty
-	clear = ! git reset --hard && git clean -f -d && git checkout -- .
-	clearbranch = ! git branch | grep -v 'master' | xargs git branch -D
-	track = ! git branch --set-upstream-to=origin/$(git bn) $(git bn)
-	from = ! git --no-pager log $1..HEAD --pretty=oneline
-	since = ! git --no-pager log $1^..HEAD --pretty=oneline
-	ups = ! git push --set-upstream origin "$(git rev-parse --abbrev-ref HEAD)"
-	# Git scripts
-	editconf = ! vim ~/.gitconfig
-	printconf = ! cat ~/.gitconfig
-	ignore = ! curl -L -s https://www.gitignore.io/api/$@
-	ec = editconf
-	pc = printconf
-	brddone= ! git branch | git_prune_by_status.sh IN Done
+  # Power aliases
+  ap = add -p
+  bn = symbolic-ref --short HEAD
+  cm = commit
+  co = checkout
+  cp = cherry-pick
+  br = branch
+  rb = rebase
+  st = status
+  rl = reflog
+  sh = stash
+  ft = fetch --all --tags --prune
+  l = log
+  ll = log --graph --oneline
+  lll = log --all --graph --pretty=format:'%C(auto)%h%C(auto)%d %s %C(dim cyan)(%aN, %ar)'
+  del = branch -D
+  hash = rev-parse --short HEAD
+  # Extra commands
+  last = log -1 HEAD
+  root = rev-parse --show-toplevel
+  empty = commit --allow-empty
+  clear = ! git reset --hard && git clean -f -d && git checkout -- .
+  clearbranch = ! git branch | grep -v 'master' | xargs git branch -D
+  track = ! git branch --set-upstream-to=origin/$(git bn) $(git bn)
+  from = ! git --no-pager log $1..HEAD --pretty=oneline
+  since = ! git --no-pager log $1^..HEAD --pretty=oneline
+  ups = ! git push --set-upstream origin "$(git rev-parse --abbrev-ref HEAD)"
+  # Git scripts
+  editconf = ! vim ~/.gitconfig
+  printconf = ! cat ~/.gitconfig
+  ignore = ! curl -L -s https://www.gitignore.io/api/$@
+  ec = editconf
+  pc = printconf
+  brddone= ! git branch | git_prune_by_status.sh IN Done
 [user]
-	name = Leo Xuzhang Lin
-	email = me@leoxlin.com
+  name = Leo Xuzhang Lin
+  email = me@leoxlin.com
 [color]
-	status = auto
-	ui = auto
+  status = auto
+  ui = auto
 [color "status"]
-	added = green
-	changed = red
-	untracked = blue
+  added = green
+  changed = red
+  untracked = blue
 [pull]
-	rebase = false
+  rebase = false
 [push]
-	default = simple
-	autoSetupRemote = true
+  default = simple
+  autoSetupRemote = true
 [pager]
-	branch = false
-	tag = false
-	diff = delta
-	log = delta
-	reflog = delta
-	show = delta
+  branch = false
+  tag = false
+  diff = delta
+  log = delta
+  reflog = delta
+  show = delta
 [gpg]
-	format = ssh
+  format = ssh
 [delta]
-	navigate = true
-	light = false
-	line-numbers = true
-	side-by-side = false
-	syntax-theme = Nord
+  navigate = true
+  light = false
+  line-numbers = true
+  side-by-side = false
+  syntax-theme = Nord
 [interactive]
-	diffFilter = delta --color-only
+  diffFilter = delta --color-only
 [includeIf "hasconfig:remote.*.url:git@github.com:articulate/**"]
   path = ~/.gitconfig-articulate
