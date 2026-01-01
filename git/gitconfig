@@ -61,8 +61,6 @@
 	log = delta
 	reflog = delta
 	show = delta
-[url "git@github.com:"]
-	insteadOf = https://github.com/
 [gpg]
 	format = ssh
 [delta]
@@ -74,4 +72,4 @@
 [interactive]
 	diffFilter = delta --color-only
 [includeIf "hasconfig:remote.*.url:git@github.com:articulate/**"]
-    path = ~/.gitconfig-articulate
+  path = ~/.gitconfig-articulate
