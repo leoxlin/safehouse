@@ -29,14 +29,6 @@ else
   alias l='ls -F'
 fi
 
-if command -v bat 1>/dev/null 2>&1; then
-  alias cat='bat'
-fi
-
-if command -v fd 1>/dev/null 2>&1; then
-  alias find='fd'
-fi
-
 alias ..='cd ..'
 alias ...='cd .. && cd ..'
 alias rmrf='rm -rf'
