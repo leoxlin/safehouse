@@ -96,3 +96,5 @@ alias kh='list_alias_starts_with k'
 if ! [ `command -v pbcopy` ]; then
   alias pbcopy='xsel --clipboard --input'
 fi
+
+alias nu='nu --config ~/.config/nushell/config.nu --env-config ~/.config/nushell/env.nu'
