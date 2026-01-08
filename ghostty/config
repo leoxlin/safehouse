@@ -15,6 +15,9 @@ gtk-toolbar-style = raised
 bell-features = no-system,no-audio,no-attention,no-title,no-border
 desktop-notifications = false
 
+# Disable close confirmation
+confirm-close-surface = false
+
 # Bind shift enter to work properly
 keybind = shift+enter=text:\n
 
