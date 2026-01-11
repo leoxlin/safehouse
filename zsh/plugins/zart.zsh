@@ -153,6 +153,5 @@ zart() {
 }
 
 alias z='zart'
-alias kubectl='zart kubectl'
 
 zart_setup 'no'

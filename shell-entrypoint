@@ -7,12 +7,7 @@ else
   readonly BREW_PATH="/home/linuxbrew/.linuxbrew/bin"
 fi
 
-if [[ "$(hostname)" =~ "articulate" ]]; then
-  $BREW_PATH/zsh
-elif [[ -f "$BREW_PATH/nu" ]]; then
-  readonly NU_PATH="$HOME/.config/nushell"
-  $BREW_PATH/nu --config "${NU_PATH}/config.nu" --env-config "${NU_PATH}/env.nu"
-elif [[ -f "$BREW_PATH/zsh" ]]; then
+if [[ -f "$BREW_PATH/zsh" ]]; then
   $BREW_PATH/zsh
 else
   /usr/bin/zsh

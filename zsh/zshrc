@@ -7,7 +7,7 @@ autoload -Uz compinit
 compinit -d ~/.zsh/cache/.zcompdump-$HOST
 
 # Case-insensitive completion
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' ignored-patterns '.git' '.git/*'
 
 if [ -e "/opt/homebrew" ]; then
   export PATH="/opt/homebrew/bin:$PATH"
