@@ -8,6 +8,9 @@ compinit -d ~/.zsh/cache/.zcompdump-$HOST
 
 # Case-insensitive completion
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' ignored-patterns '.git' '.git/*'
+zstyle ':completion:*' list-max-items 100
+zstyle ':completion:*' cache-path ~/.zsh/cache
+zstyle ':completion:*' use-cache on
 
 if [ -e "/opt/homebrew" ]; then
   export PATH="/opt/homebrew/bin:$PATH"
