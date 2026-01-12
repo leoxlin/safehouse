@@ -98,3 +98,4 @@ if ! [ `command -v pbcopy` ]; then
 fi
 
 alias nu='nu --config ~/.config/nushell/config.nu --env-config ~/.config/nushell/env.nu'
+alias mr='mise run'
