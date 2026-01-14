@@ -6,8 +6,9 @@ PROMPT_EOL_MARK=''
 autoload -Uz compinit
 compinit -d ~/.zsh/cache/.zcompdump-$HOST
 
-# Case-insensitive completion
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' max-depth 1
+zstyle ':completion:*' timeout 2
 
 if [ -e "/opt/homebrew" ]; then
   export PATH="/opt/homebrew/bin:$PATH"
