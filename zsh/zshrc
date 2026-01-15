@@ -4,11 +4,16 @@ PROMPT_EOL_MARK=''
 
 # Enable Zsh completions
 autoload -Uz compinit
-compinit -d ~/.zsh/cache/.zcompdump-$HOST
+if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
+    compinit
+else
+    compinit -C
+fi
 
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' ignored-patterns '*/Media/*' 'Media'
 zstyle ':completion:*' max-depth 1
-zstyle ':completion:*' timeout 2
+zstyle ':completion:*' timeout 1
 
 if [ -e "/opt/homebrew" ]; then
   export PATH="/opt/homebrew/bin:$PATH"
