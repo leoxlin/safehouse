@@ -1,5 +1,7 @@
 browsh: .config/browsh
 
+docker: .docker
+
 ghostty: .config/ghostty
 
 git:
