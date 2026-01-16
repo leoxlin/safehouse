@@ -9,6 +9,8 @@ git:
   gitconfig: .gitconfig
   gitignore: .gitignore
 
+k9s: .config/k9s
+
 karabiner: .config/karabiner
 
 kitty: .config/kitty

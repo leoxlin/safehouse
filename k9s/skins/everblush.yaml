@@ -1,0 +1,133 @@
+# Everblush K9s Skin
+# Based on the Everblush
+# https://github.com/Everblush/everblush
+
+# Color definitions
+everblush:
+  # Core Everblush colors
+  background: &background "#141b1e"
+  lighter_background: &lighter_background "#232a2d"
+  foreground: &foreground "#dadada"
+
+  # Everblush palette
+  red: &red "#e57474"
+  green: &green "#8ccf7e"
+  yellow: &yellow "#e5c76b"
+  blue: &blue "#67b0e8"
+  magenta: &magenta "#c47fd5"
+  cyan: &cyan "#6cbfbf"
+  light_gray: &light_gray "#b3b9b8"
+  white: &white "#dadada"
+
+k9s:
+  # General K9s styles
+  body:
+    fgColor: *foreground
+    bgColor: *background
+    logoColor: *magenta
+
+  # Prompt styles
+  prompt:
+    fgColor: *foreground
+    bgColor: *background
+    suggestColor: *blue
+
+  # ClusterInfoView styles
+  info:
+    fgColor: *cyan
+    sectionColor: *magenta
+
+  # Dialog styles
+  dialog:
+    fgColor: *foreground
+    bgColor: *background
+    buttonFgColor: *background
+    buttonBgColor: *blue
+    buttonFocusFgColor: *background
+    buttonFocusBgColor: *cyan
+    labelFgColor: *yellow
+    fieldFgColor: *foreground
+
+  # Frame styles
+  frame:
+    # Borders styles
+    border:
+      fgColor: *lighter_background
+      focusColor: *cyan
+
+    # MenuView attributes and styles
+    menu:
+      fgColor: *foreground
+      keyColor: *magenta
+      # Used for favorite namespaces
+      numKeyColor: *cyan
+
+    # CrumbView attributes for history navigation
+    crumbs:
+      fgColor: *foreground
+      bgColor: *lighter_background
+      activeColor: *cyan
+
+    # Resource status and update styles
+    status:
+      newColor: *green
+      modifyColor: *blue
+      addColor: *cyan
+      errorColor: *red
+      highlightColor: *magenta
+      killColor: *light_gray
+      completedColor: *light_gray
+
+    # Border title styles
+    title:
+      fgColor: *cyan
+      bgColor: *background
+      highlightColor: *magenta
+      counterColor: *blue
+      filterColor: *yellow
+
+  # Specific views styles
+  views:
+    # Charts styles
+    charts:
+      bgColor: *background
+      defaultDialColors:
+        - *blue
+        - *red
+      defaultChartColors:
+        - *blue
+        - *red
+
+    # TableView attributes
+    table:
+      fgColor: *foreground
+      bgColor: *background
+      # Header row styles
+      header:
+        fgColor: *cyan
+        bgColor: *background
+        sorterColor: *magenta
+
+    # Xray view attributes
+    xray:
+      fgColor: *foreground
+      bgColor: *background
+      cursorColor: *cyan
+      graphicColor: *blue
+      showIcons: false
+
+    # YAML view attributes
+    yaml:
+      keyColor: *magenta
+      colonColor: *blue
+      valueColor: *foreground
+
+    # Logs view attributes
+    logs:
+      fgColor: *foreground
+      bgColor: *background
+      indicator:
+        fgColor: *foreground
+        bgColor: *background
+        toggleOnColor: *green
+        toggleOffColor: *light_gray
