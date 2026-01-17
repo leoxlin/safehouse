@@ -1,5 +1,4 @@
 [tools]
-1password = "latest"
 flux2 = "2.7.5"
 go = "1.24.9"
 helm-ls = "v0.5.4"
