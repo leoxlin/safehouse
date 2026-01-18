@@ -21,6 +21,7 @@
       "ctrl-q": "zed::Quit",
       "ctrl-s": "workspace::Save",
       "ctrl-n": "workspace::ToggleLeftDock",
+      "ctrl-w": null,
       "ctrl-`": null,
     },
   },
@@ -77,6 +78,12 @@
       "ctrl-v": "terminal::Paste",
       "ctrl-f": "buffer_search::Deploy",
       "ctrl-k": "terminal::Clear",
+    },
+  },
+  {
+    "context": "SettingsWindow",
+    "bindings": {
+      "escape": "workspace::CloseWindow",
     },
   },
 ]
