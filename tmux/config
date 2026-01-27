@@ -118,7 +118,7 @@ set -g @plugin 'tmux-plugins/tmux-yank'
 
 set -g @continuum-restore 'on'
 
-run '~/.tmux/plugins/tpm/tpm'
+run-shell '~/.tmux/plugins/tpm/tpm || true'
 
 # set -g c0-change-trigger 20
 # set -g c0-change-interval 1000
