@@ -26,7 +26,6 @@ bind ']' split-window -v
 # Kill pane (or tab)
 bind w kill-pane
 
-
 bind -r P swap-window -t -1 # swap with previous tab
 bind -r N swap-window -t +1 # swap with next tab
 
@@ -38,7 +37,9 @@ bind -r N swap-window -t +1 # swap with next tab
 
 # Pane border colours
 set -g pane-border-style fg='#232a2d'
-set -g pane-active-border-style fg='#6cbfbf'
+set -g pane-active-border-style fg='#323c41'
+set-window-option -g pane-border-status bottom
+set-window-option -g pane-border-format ''
 
 ## Pane numbering colours
 set -g display-panes-active-colour '#6cbfbf'
