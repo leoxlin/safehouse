@@ -1,5 +1,5 @@
 function _set_terminal_title() {
-  print -Pn "\e]0;%~\a"
+  print -Pn "\e]0;Ghostty\a"
 }
 
 autoload -Uz add-zsh-hook

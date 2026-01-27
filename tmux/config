@@ -45,8 +45,9 @@ set -g display-panes-colour '#464e50'
 set -g message-style bg='#232a2d',fg='#e5c76b'
 
 # Set status bar
-set -g status-style fg='#b3b9b8',bg='#141b1e'
-set -g status-left '#[fg=#6cbfbf] λ '
+set -g status-position bottom
+set -g status-style fg='#b3b9b8',bg='#232a2d'
+set -g status-left '#[fg=#6cbfbf]'
 set -g status-left-length 32
 set -g status-right '#[fg=#b3b9b8]#(whoami)#[fg=#464e50]@#[fg=#dadada]#H '
 set -g status-right-length 64
@@ -67,9 +68,9 @@ set -gw clock-mode-style 12
 set -gw window-status-style fg='#b3b9b8',bg='#141b1e',bold
 set -gw window-status-format \
   '#[fg=#464e50,bg=#1a2225] #{window_index} #[fg=#b3b9b8] #{window_name} '
-set -gw window-status-current-style fg='#dadada',bg='#232a2d',none
+set -gw window-status-current-style fg='#6cbfbf',bg='#3a4449',bold
 set -gw window-status-current-format \
-  '#[fg=#6cbfbf,bg=#232a2d] #{window_index} #[fg=#dadada] #{window_name} '
+  '#[fg=#6cbfbf,bg=#3a4449] #{window_index}  #{window_name} '
 
 # Automatic rename
 set -gw automatic-rename on
