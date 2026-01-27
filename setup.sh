@@ -4,6 +4,7 @@ set -euo pipefail
 
 readonly ZSH_DIR="${HOME}/.zsh"
 readonly VIM_BUNDLE="${HOME}/.vim/bundle"
+readonly TMUX_PLUGINS="${HOME}/.tmux/plugins"
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "Setting up dotfiles..."
@@ -14,6 +15,16 @@ if [[ ! -e "${VIM_BUNDLE}/Vundle.vim" ]]; then
   echo "Installing Vundle..."
   git clone https://github.com/VundleVim/Vundle.vim.git "${VIM_BUNDLE}/Vundle.vim" || {
     echo "Failed to clone Vundle"
+    exit 1
+  }
+fi
+
+# Setup TPM for tmux
+mkdir -p "${TMUX_PLUGINS}"
+if [[ ! -e "${TMUX_PLUGINS}/tpm" ]]; then
+  echo "Installing TPM..."
+  git clone https://github.com/tmux-plugins/tpm "${TMUX_PLUGINS}/tpm" || {
+    echo "Failed to clone TPM"
     exit 1
   }
 fi

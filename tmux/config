@@ -29,43 +29,47 @@ bind -r N swap-window -t +1 # swap with next tab
 
 #setw -g aggressive-resize on
 
+# Everblush theme colors
+# bg: #141b1e, fg: #dadada, black: #232a2d, cyan: #6cbfbf, blue: #67b0e8
+# green: #8ccf7e, yellow: #e5c76b, magenta: #c47fd5, white: #b3b9b8
+
 # Pane border colours
-set -g pane-border-style fg=colour235
-set -g pane-active-border-style fg=colour240
+set -g pane-border-style fg='#232a2d'
+set -g pane-active-border-style fg='#6cbfbf'
 
 ## Pane numbering colours
-set -g display-panes-active-colour colour20
-set -g display-panes-colour colour33
+set -g display-panes-active-colour '#6cbfbf'
+set -g display-panes-colour '#464e50'
 
 ## Display message colours
-set -g message-style bg=colour233,fg=colour166
+set -g message-style bg='#232a2d',fg='#e5c76b'
 
 # Set status bar
-set -g status-style fg=colour240,bg=colour233
-set -g status-left '#[fg=colour37] λ '
+set -g status-style fg='#b3b9b8',bg='#141b1e'
+set -g status-left '#[fg=#6cbfbf] λ '
 set -g status-left-length 32
-set -g status-right '#[fg=colour240]#(whoami)#[fg=colour234]@#[fg=colour245]#H '
+set -g status-right '#[fg=#b3b9b8]#(whoami)#[fg=#464e50]@#[fg=#dadada]#H '
 set -g status-right-length 64
 set -g status-justify left
 
 # Window/session selection colours
-set -gw mode-style fg=black,bg=colour166
+set -gw mode-style fg='#141b1e',bg='#6cbfbf'
 
 # Pane number display colors
-set -g display-panes-active-colour white
-set -g display-panes-colour white
+set -g display-panes-active-colour '#6cbfbf'
+set -g display-panes-colour '#464e50'
 
 ## Clock color
-set -gw clock-mode-colour colour166
+set -gw clock-mode-colour '#6cbfbf'
 set -gw clock-mode-style 12
 
 # Window status (tab) colors and format
-set -gw window-status-style fg=colour240,bg=colour234,bold
+set -gw window-status-style fg='#b3b9b8',bg='#141b1e',bold
 set -gw window-status-format \
-  '#[fg=colour16,bg=colour235] #{window_index} #[default] #{window_name} '
-set -gw window-status-current-style fg=colour231,bg=colour235,none
+  '#[fg=#464e50,bg=#1a2225] #{window_index} #[fg=#b3b9b8] #{window_name} '
+set -gw window-status-current-style fg='#dadada',bg='#232a2d',none
 set -gw window-status-current-format \
-  '#[fg=colour36,bg=colour236] #{window_index} #[default] #{window_name} '
+  '#[fg=#6cbfbf,bg=#232a2d] #{window_index} #[fg=#dadada] #{window_name} '
 
 # Automatic rename
 set -gw automatic-rename on

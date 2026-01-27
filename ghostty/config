@@ -8,8 +8,10 @@ command = /usr/local/bin/shell-entrypoint
 # OSX specific configs
 macos-titlebar-style = tabs
 macos-titlebar-proxy-icon = hidden
-gtk-titlebar-style = tabs
+gtk-titlebar-style = native
 gtk-toolbar-style = raised
+gtk-tabs-location = top
+window-show-tab-bar = auto
 
 # Disable notifications
 bell-features = no-system,no-audio,no-attention,no-title,no-border
