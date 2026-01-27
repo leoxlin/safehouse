@@ -29,8 +29,8 @@ keybind = performable:ctrl+c=copy_to_clipboard
 keybind = ctrl+v=paste_from_clipboard
 
 # Rebind splits and navigation
-keybind = ctrl+\=new_split:right
-keybind = ctrl+]=new_split:down
+keybind = ctrl+\=text:\x01\\
+keybind = ctrl+]=text:\x01]
 keybind = ctrl+shift+\=new_split:left
 keybind = ctrl+shift+]=new_split:up
 

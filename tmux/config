@@ -22,7 +22,7 @@ bind l select-pane -R
 # Vertical split screen
 bind '\' split-window -h
 # Horizontal split screen
-bind - split-window -v
+bind ']' split-window -v
 
 bind -r P swap-window -t -1 # swap with previous tab
 bind -r N swap-window -t +1 # swap with next tab
@@ -68,9 +68,9 @@ set -gw clock-mode-style 12
 set -gw window-status-style fg='#b3b9b8',bg='#141b1e',bold
 set -gw window-status-format \
   '#[fg=#464e50,bg=#1a2225] #{window_index} #[fg=#b3b9b8] #{window_name} '
-set -gw window-status-current-style fg='#6cbfbf',bg='#3a4449',bold
+set -gw window-status-current-style fg='#c47fd5',bg='#3a4449',bold
 set -gw window-status-current-format \
-  '#[fg=#6cbfbf,bg=#3a4449] #{window_index}  #{window_name} '
+  '#[fg=#b3b9b8,bg=#3a4449] #{window_index}  #{window_name} '
 
 # Automatic rename
 set -gw automatic-rename on
