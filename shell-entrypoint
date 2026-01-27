@@ -7,8 +7,8 @@ else
   readonly BREW_PATH="/home/linuxbrew/.linuxbrew/bin"
 fi
 
-if [[ -f "$BREW_PATH/zsh" ]]; then
-  $BREW_PATH/zsh
+if [[ -f "$BREW_PATH/tmux" ]]; then
+  $BREW_PATH/tmux
 else
   /usr/bin/zsh
 fi
