@@ -44,7 +44,7 @@ keybind = ctrl+k=clear_screen
 
 # Tab management (send to tmux via C-a prefix)
 keybind = ctrl+t=text:\x01c
-keybind = ctrl+w=text:\x01&
+keybind = ctrl+w=text:\x01w
 keybind = ctrl+arrow_right=text:\x01n
 keybind = ctrl+arrow_left=text:\x01p
 
