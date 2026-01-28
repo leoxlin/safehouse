@@ -8,7 +8,7 @@ else
 fi
 
 if [[ -f "$BREW_PATH/tmux" ]]; then
-  $BREW_PATH/tmux
+  $BREW_PATH/tmux new-session -A -s default
 else
   /usr/bin/zsh
 fi
