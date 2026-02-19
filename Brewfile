@@ -7,6 +7,7 @@ if OS.mac?
   cask '1password'
   cask '1password-cli'
   cask 'alfred'
+  cask 'brave-browser'
   cask 'karabiner-elements'
   cask 'ghostty'
   cask 'wireshark-app'
