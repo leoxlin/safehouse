@@ -6,6 +6,7 @@ if OS.mac?
   brew 'libyaml'
   cask '1password'
   cask '1password-cli'
+  cask 'alfred'
   cask 'karabiner-elements'
   cask 'ghostty'
   cask 'wireshark-app'
