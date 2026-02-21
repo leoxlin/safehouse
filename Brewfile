@@ -6,9 +6,13 @@ if OS.mac?
   brew 'libyaml'
   cask '1password'
   cask '1password-cli'
+  cask 'alfred'
+  cask 'brave-browser'
   cask 'ghostty'
-  cask 'wireshark-app'
+  cask 'karabiner-elements'
+  cask 'rectangle'
   cask 'vscodium'
+  cask 'wireshark-app'
   cask 'zed'
 end
 
