@@ -71,3 +71,5 @@
   diffFilter = delta --color-only
 [includeIf "hasconfig:remote.*.url:git@github.com:articulate/**"]
   path = ~/.gitconfig-articulate
+[init]
+  defaultBranch = main
