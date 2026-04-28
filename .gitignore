@@ -4,3 +4,4 @@ karabiner/automatic_backups
 nushell/history.*
 zed/config/prompts/
 zed/prompts
+mailmon/plan.db
