@@ -1,6 +1,6 @@
 folders:
   - name: Update
-    description: Automated updates from sites like reminders, 2fa code, login notification
+    description: Automated updates like reminders, 2fa code, login notification
     examples:
       - Your Chase Online Activation Code
       - A new sign-in on Linux
@@ -41,12 +41,4 @@ folders:
       - Your individual account statement is available
       - Your transfer to Robinhood is on its way
       - Emails from Chase that isn't an activation code or login notice
-
-system_folders:
-  - Inbox
-  - Archive
-  - Drafts
-  - Sent
-  - Spam
-  - Trash
 
