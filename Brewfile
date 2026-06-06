@@ -49,3 +49,5 @@ brew 'vim'
 brew 'watch'
 brew 'yq'
 brew 'zoxide'
+
+cask 'codex'
