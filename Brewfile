@@ -51,3 +51,4 @@ brew 'yq'
 brew 'zoxide'
 
 cask 'codex'
+cask 'claude-code'
