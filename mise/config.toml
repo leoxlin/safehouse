@@ -1,5 +1,6 @@
 [tools]
 flux2 = "2.7.5"
+fnox = "1.25.1"
 go = "1.24.9"
 helm-ls = "v0.5.4"
 node = "25"
