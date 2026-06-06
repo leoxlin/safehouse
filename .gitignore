@@ -5,3 +5,6 @@ nushell/history.*
 zed/config/prompts/
 zed/prompts
 mailmon/plan.db
+docker/buildx
+docker/.token_seed
+docker/.token_seed.lock
