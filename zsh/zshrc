@@ -26,6 +26,7 @@ fi
 [ -e "/home/linuxbrew/.linuxbrew/bin" ] && export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 [ -e "$HOME/Tools" ] && export PATH="$HOME/Tools:$PATH"
 [ -e "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
+[ -e "$HOME/.lmstudio/bin" ] && export PATH="$PATH:$HOME/.lmstudio/bin"
 
 if command -v mise >/dev/null 2>&1; then
   eval "$(mise activate zsh)"
@@ -54,3 +55,4 @@ fi
 if command -v starship >/dev/null 2>&1; then
   eval "$(starship init zsh)"
 fi
+
