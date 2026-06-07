@@ -9,6 +9,21 @@ readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "Setting up dotfiles..."
 
+# Prompt for workstation type
+while true; do
+  read -rp "Workstation type [work/home]: " wstype
+  case "${wstype}" in
+    work|home)
+      echo "${wstype}" > "${HOME}/.wstype"
+      echo "Workstation type set to: ${wstype}"
+      break
+      ;;
+    *)
+      echo "Invalid choice. Please enter 'work' or 'home'."
+      ;;
+  esac
+done
+
 # Setup Vundle for Vim
 mkdir -p "${VIM_BUNDLE}"
 if [[ ! -e "${VIM_BUNDLE}/Vundle.vim" ]]; then
