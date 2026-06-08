@@ -31,7 +31,7 @@ starship:
   is-git-clean: .local/bin/is-git-clean
   is-git-dirty: .local/bin/is-git-dirty
 
-ssh:
+ssh[home]:
   config: .ssh/config
 
 tmux:

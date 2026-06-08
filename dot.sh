@@ -28,6 +28,12 @@ if [[ "${1:-}" == "apply" ]]; then
     DRY_RUN=false
 fi
 
+# Read workstation type
+WS_TYPE=""
+if [[ -f "${HOME}/.wstype" ]]; then
+  WS_TYPE="$(cat "${HOME}/.wstype")"
+fi
+
 # Function to check if symlink is already correct
 is_correct_symlink() {
     local dest="$1"
@@ -126,21 +132,35 @@ echo ""
 config_types=$(yq eval 'keys | .[]' "${YAML_FILE}")
 
 while IFS= read -r config_type; do
+    # Parse optional workstation type qualifier: name[wstype]
+    ws_qualifier=""
+    base_type="${config_type}"
+    if [[ "${config_type}" =~ ^(.+)\[(.+)\]$ ]]; then
+        base_type="${BASH_REMATCH[1]}"
+        ws_qualifier="${BASH_REMATCH[2]}"
+    fi
+
+    # Skip if ws_qualifier doesn't match current workstation type
+    if [[ -n "${ws_qualifier}" ]] && [[ "${ws_qualifier}" != "${WS_TYPE}" ]]; then
+        echo -e "${YELLOW}[s]${NC} Skipping ${config_type} (requires wstype=${ws_qualifier}, current=${WS_TYPE:-unset})"
+        continue
+    fi
+
     # Check if the value is a string (direct mapping)
-    if yq eval ".${config_type} | type" "${YAML_FILE}" | grep -q "!!str"; then
+    if yq eval ".[\"${config_type}\"] | type" "${YAML_FILE}" | grep -q "!!str"; then
         # Direct mapping: config_type -> destination
-        dest_path=$(yq eval ".${config_type}" "${YAML_FILE}")
-        source_path="${SCRIPT_DIR}/${config_type}"
+        dest_path=$(yq eval ".[\"${config_type}\"]" "${YAML_FILE}")
+        source_path="${SCRIPT_DIR}/${base_type}"
         dest_full="${HOME_DIR}/${dest_path}"
 
         create_symlink "${source_path}" "${dest_full}" "${DRY_RUN}"
     else
         # Nested mapping: iterate through keys
-        items=$(yq eval ".${config_type} | keys | .[]" "${YAML_FILE}")
+        items=$(yq eval ".[\"${config_type}\"] | keys | .[]" "${YAML_FILE}")
 
         while IFS= read -r item; do
-            dest_path=$(yq eval ".${config_type}.[\"${item}\"]" "${YAML_FILE}")
-            source_path="${SCRIPT_DIR}/${config_type}/${item}"
+            dest_path=$(yq eval ".[\"${config_type}\"][\"${item}\"]" "${YAML_FILE}")
+            source_path="${SCRIPT_DIR}/${base_type}/${item}"
             dest_full="${HOME_DIR}/${dest_path}"
 
             create_symlink "${source_path}" "${dest_full}" "${DRY_RUN}"
