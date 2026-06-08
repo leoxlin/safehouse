@@ -193,4 +193,3 @@ mise.local.toml
 
 # local stash folder
 .stash
-.claude/

@@ -15,6 +15,7 @@
   rl = reflog
   sh = stash
   ft = fetch --all --tags --prune
+  wt = worktree
   l = log
   ll = log --graph --oneline
   lll = log --all --graph --pretty=format:'%C(auto)%h%C(auto)%d %s %C(dim cyan)(%aN, %ar)'
