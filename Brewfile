@@ -1,6 +1,7 @@
 if OS.mac?
   brew 'binutils'
   brew 'coreutils'
+  brew 'cloudflared'
   brew 'gnu-sed'
   brew 'libevent'
   brew 'libyaml'
