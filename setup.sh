@@ -9,6 +9,21 @@ readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "Setting up dotfiles..."
 
+# Prompt for workstation type
+while true; do
+  read -rp "Workstation type [work/home]: " wstype
+  case "${wstype}" in
+    work|home)
+      echo "${wstype}" > "${HOME}/.wstype"
+      echo "Workstation type set to: ${wstype}"
+      break
+      ;;
+    *)
+      echo "Invalid choice. Please enter 'work' or 'home'."
+      ;;
+  esac
+done
+
 # Setup Vundle for Vim
 mkdir -p "${VIM_BUNDLE}"
 if [[ ! -e "${VIM_BUNDLE}/Vundle.vim" ]]; then
@@ -65,5 +80,11 @@ echo "Setting up mise..."
 }
 
 sudo ln -s $(pwd)/shell-entrypoint /usr/local/bin/shell-entrypoint
+
+# Setup 1Password SSH agent socket symlink (macOS only)
+if [[ "$(uname)" == "Darwin" ]]; then
+  mkdir -p "${HOME}/.1password"
+  ln -sf "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock" "${HOME}/.1password/agent.sock"
+fi
 
 echo "Setup complete!"

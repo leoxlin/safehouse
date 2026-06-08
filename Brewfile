@@ -1,14 +1,19 @@
 if OS.mac?
   brew 'binutils'
   brew 'coreutils'
+  brew 'cloudflared'
   brew 'gnu-sed'
   brew 'libevent'
   brew 'libyaml'
   cask '1password'
   cask '1password-cli'
+  cask 'alfred'
+  cask 'brave-browser'
   cask 'ghostty'
-  cask 'wireshark-app'
+  cask 'karabiner-elements'
+  cask 'rectangle'
   cask 'vscodium'
+  cask 'wireshark-app'
   cask 'zed'
 end
 
@@ -45,3 +50,6 @@ brew 'vim'
 brew 'watch'
 brew 'yq'
 brew 'zoxide'
+
+cask 'codex'
+cask 'claude-code'
