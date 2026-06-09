@@ -53,3 +53,4 @@ brew 'zoxide'
 
 cask 'codex'
 cask 'claude-code'
+cask 'obsidian'
