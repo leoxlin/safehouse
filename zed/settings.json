@@ -9,21 +9,21 @@
 {
   "cli_default_open_behavior": "new_window",
   "project_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "outline_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "collaboration_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "agent": {
     "dock": "right",
     "favorite_models": [],
-    "model_parameters": []
+    "model_parameters": [],
   },
   "git_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "use_autoclose": false,
   "on_last_window_closed": "platform_default",
@@ -33,7 +33,7 @@
     "include_warnings": false,
   },
   "diagnostics_max_severity": "error",
-  "disable_ai": true,
+  "disable_ai": false,
   "load_direnv": "shell_hook",
   "telemetry": {
     "diagnostics": false,
