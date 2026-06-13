@@ -1,7 +1,17 @@
 {
   "model": "opus",
+  "effortLevel": "high",
   "enabledPlugins": {
     "lapdog@lapdog": true
+  },
+  "permissions": {
+    "allow": [
+      "Bash(find *)",
+      "Bash(helm template *)",
+      "Bash(mkdir *)",
+      "mcp__context7__query-docs",
+      "mcp__context7__resolve-library-id"
+    ]
   },
   "extraKnownMarketplaces": {
     "lapdog": {
@@ -11,7 +21,6 @@
       }
     }
   },
-  "effortLevel": "high",
   "hooks": {
     "Notification": [
       {
