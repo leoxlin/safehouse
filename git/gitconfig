@@ -19,8 +19,10 @@
   ll = log --graph --oneline
   lll = log --all --graph --pretty=format:'%C(auto)%h%C(auto)%d %s %C(dim cyan)(%aN, %ar)'
   del = branch -D
-  hash = rev-parse --short HEAD
   # Extra commands
+  hash = rev-parse --short HEAD
+  name = ! basename "$(git rev-parse --show-toplevel)"
+  default = ! git symbolic-ref --short refs/remotes/origin/HEAD
   last = log -1 HEAD
   root = rev-parse --show-toplevel
   empty = commit --allow-empty
