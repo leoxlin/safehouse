@@ -5,34 +5,27 @@
 #
 # In tmux: writes a bell to the session's pane (monitor-bell flags the window
 # in the status bar, so you can see which window needs you even from another
-# window) and flashes a message on the status line.
+# window), flashes a message on the status line, and sends a desktop
+# notification.
 # Outside tmux: falls back to a notify-send desktop notification.
-# If tmux window is not active: also sends notify-send with repo/branch context.
+#
+# Note: the desktop notification is only emitted when the current tmux window
+# is not active. tmux's #{window_active} tracks focus *within* tmux; it cannot
+# tell whether the terminal emulator window itself is minimized or hidden, but
+# it is the only reliable cross-platform signal we have. To avoid spam, all
+# Claude Code sessions share a single notification ID, so new notifications
+# replace the previous one instead of stacking.
 set -u
+
+# Stable notification ID shared across all Claude Code sessions.
+NOTIFY_ID=$(printf '%s' 'Claude Code' | cksum | cut -d' ' -f1)
 
 json=$(cat)
 event=$(printf '%s' "$json" | jq -r '.hook_event_name // empty' 2>/dev/null)
 
-# Extract context from hook JSON
-extract_context() {
-  local repo branch path summary
-  repo=$(printf '%s' "$json" | jq -r '.repository_name // .project_name // empty' 2>/dev/null)
-  branch=$(printf '%s' "$json" | jq -r '.git_branch // empty' 2>/dev/null)
-  path=$(printf '%s' "$json" | jq -r '.current_path // .project_path // empty' 2>/dev/null)
-  summary=$(printf '%s' "$json" | jq -r '.summary // .session_summary // empty' 2>/dev/null)
-
-  # Fallback: detect from environment
-  if [ -z "$repo" ] && [ -d ".git" ]; then
-    repo=$(basename "$(git rev-parse --show-toplevel 2>/dev/null)" || echo "")
-  fi
-  if [ -z "$branch" ]; then
-    branch=$(git branch --show-current 2>/dev/null || echo "")
-  fi
-  if [ -z "$path" ]; then
-    path=$(pwd)
-  fi
-
-  printf '%s|%s|%s|%s' "$repo" "$branch" "$path" "$summary"
+# Extract the session summary from hook JSON
+extract_summary() {
+  printf '%s' "$json" | jq -r '.summary // .session_summary // empty' 2>/dev/null
 }
 
 case "$event" in
@@ -47,22 +40,12 @@ case "$event" in
     ;;
 esac
 
-# Build context-rich notification body
+# Build the notification body from the session summary
 build_notify_body() {
-  local ctx repo branch path summary
-  ctx=$(extract_context)
-  repo=$(echo "$ctx" | cut -d'|' -f1)
-  branch=$(echo "$ctx" | cut -d'|' -f2)
-  path=$(echo "$ctx" | cut -d'|' -f3)
-  summary=$(echo "$ctx" | cut -d'|' -f4)
+  local summary
+  summary=$(extract_summary)
 
-  local body=""
-  [ -n "$repo" ] && body="📁 $repo"
-  [ -n "$branch" ] && body="${body}${body:+, }⎇ $branch"
-  [ -n "$path" ] && body="${body}\n📂 $path"
-  [ -n "$summary" ] && body="${body}\n📝 $summary"
-
-  printf '%s' "$body"
+  [ -n "$summary" ] && printf '📝 %s' "$summary"
 }
 
 # Check if we're in an active (visible/focused) tmux window
@@ -76,7 +59,8 @@ tmux_window_active() {
   [ "$window_active" = "1" ]
 }
 
-# Send desktop notification via notify-send
+# Send desktop notification via notify-send, replacing any existing
+# Claude Code notification so they never stack.
 send_desktop_notify() {
   command -v notify-send >/dev/null 2>&1 || return 0
 
@@ -84,9 +68,9 @@ send_desktop_notify() {
   body=$(build_notify_body)
 
   if [ -n "$body" ]; then
-    notify-send --urgency="$urgency" --app-name="Claude Code" "$msg" "$body" 2>/dev/null
+    notify-send --urgency="$urgency" --app-name="Claude Code" --replace-id="$NOTIFY_ID" "$msg" "$body" 2>/dev/null
   else
-    notify-send --urgency="$urgency" --app-name="Claude Code" "$msg" 2>/dev/null
+    notify-send --urgency="$urgency" --app-name="Claude Code" --replace-id="$NOTIFY_ID" "$msg" 2>/dev/null
   fi
 }
 
@@ -96,7 +80,7 @@ if [ -n "${TMUX:-}" ] && command -v tmux >/dev/null 2>&1; then
   [ -n "$tty" ] && printf '\a' >"$tty" 2>/dev/null
   tmux display-message -t "${TMUX_PANE:-}" "$msg" 2>/dev/null
 
-  # Also send desktop notification if window is not active
+  # Also send desktop notification if tmux window is not active
   if ! tmux_window_active; then
     send_desktop_notify
   fi
