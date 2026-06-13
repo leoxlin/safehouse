@@ -1,9 +1,4 @@
 {
-  "model": "opus",
-  "effortLevel": "high",
-  "enabledPlugins": {
-    "lapdog@lapdog": true
-  },
   "permissions": {
     "allow": [
       "Bash(find *)",
@@ -13,14 +8,7 @@
       "mcp__context7__resolve-library-id"
     ]
   },
-  "extraKnownMarketplaces": {
-    "lapdog": {
-      "source": {
-        "source": "github",
-        "repo": "DataDog/dd-apm-test-agent"
-      }
-    }
-  },
+  "model": "opus",
   "hooks": {
     "Notification": [
       {
@@ -42,5 +30,17 @@
         ]
       }
     ]
-  }
+  },
+  "enabledPlugins": {
+    "lapdog@lapdog": true
+  },
+  "extraKnownMarketplaces": {
+    "lapdog": {
+      "source": {
+        "source": "github",
+        "repo": "DataDog/dd-apm-test-agent"
+      }
+    }
+  },
+  "effortLevel": "high"
 }
