@@ -64,6 +64,21 @@ Useful options: `--description TEXT`, `--working-dir DIR`, `--env KEY=VAL`
 (repeatable), `--restart POLICY` (daemons; default `on-failure`),
 `--no-enable` (write + reload only, don't start).
 
+If the command needs an explicit shutdown step, pass `--exec-stop` with the
+**whole stop command as one quoted string**; its first token is path-resolved
+just like the main command. Only provide it when the user actually has a stop
+command — systemd's default (SIGTERM to the main process) is right for most
+daemons, so don't invent one.
+
+```bash
+scripts/make-unit.sh --name syncthing --exec-stop "syncthing cli operations shutdown" \
+  -- syncthing --no-browser
+```
+
+`--exec-stop` splits on whitespace and handles simple commands only — no pipes,
+globs, `$VARS`, or quoting inside it. For anything fancier, point it at a
+wrapper script.
+
 By default the script writes the unit, runs `systemctl --user daemon-reload`,
 and `systemctl --user enable --now` the service (or the `.timer`).
 

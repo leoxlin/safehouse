@@ -22,6 +22,9 @@
 #   --persistent          (timer only) add Persistent=true to catch up missed runs
 #   --working-dir DIR     WorkingDirectory= for the service
 #   --env KEY=VAL         add an Environment= line (repeatable)
+#   --exec-stop CMD       ExecStop= command, given as one string (e.g.
+#                         "syncthing --stop"); its first token is path-resolved
+#                         like ExecStart
 #   --restart POLICY      Restart= for daemons (default: on-failure)
 #   --no-enable           write + daemon-reload only; do not enable/start
 #   --dry-run             print the unit(s) to stdout; write nothing
@@ -44,6 +47,7 @@ TIMER=""
 PERSISTENT=0
 WORKDIR=""
 RESTART="on-failure"
+EXECSTOP=""
 ENABLE=1
 DRYRUN=0
 declare -a ENVS=()
@@ -57,11 +61,12 @@ while [[ $# -gt 0 ]]; do
     --persistent)  PERSISTENT=1; shift ;;
     --working-dir) WORKDIR="${2:-}"; shift 2 ;;
     --env)         ENVS+=("${2:-}"); shift 2 ;;
+    --exec-stop)   EXECSTOP="${2:-}"; shift 2 ;;
     --restart)     RESTART="${2:-}"; shift 2 ;;
     --no-enable)   ENABLE=0; shift ;;
     --dry-run)     DRYRUN=1; shift ;;
     --)            shift; break ;;
-    -h|--help)     sed -n '2,40p' "$0"; exit 0 ;;
+    -h|--help)     sed -n '2,36p' "$0"; exit 0 ;;
     *)             die "unknown option: $1 (did you forget -- before the command?)" ;;
   esac
 done
@@ -70,24 +75,42 @@ done
 [[ $# -gt 0 ]]     || die "no command given (put it after --)"
 [[ "${NAME}" =~ ^[A-Za-z0-9._-]+$ ]] || die "--name must be a valid unit name (alnum . _ -)"
 
-# --- resolve the command to an absolute path --------------------------------
+# --- resolve a command's first token to an absolute path --------------------
 BREW_PREFIX="$(brew --prefix 2>/dev/null || echo /home/linuxbrew/.linuxbrew)"
 BREW_BIN="${BREW_PREFIX}/bin"
 SEARCH_PATH="${BREW_BIN}:${BREW_PREFIX}/sbin:${PATH}"
 
-cmd="$1"; shift
-if [[ "${cmd}" == /* ]]; then
-  EXEC="${cmd}"
-else
-  EXEC="$(PATH="${SEARCH_PATH}" command -v "${cmd}" || true)"
-fi
-[[ -n "${EXEC}" && -x "${EXEC}" ]] || die "could not resolve '${cmd}' to an executable (searched brew prefix + PATH)"
+# resolve_bin TOKEN -> absolute path (brew prefix searched first); empty on miss.
+resolve_bin() {
+  local c="$1"
+  if [[ "${c}" == /* ]]; then
+    [[ -x "${c}" ]] && printf '%s' "${c}"
+  else
+    PATH="${SEARCH_PATH}" command -v "${c}" || true
+  fi
+}
 
-# Build a properly-quoted ExecStart from the resolved path + remaining args.
+# ExecStart: resolve the command after `--`, quote the remaining args.
+cmd="$1"; shift
+EXEC="$(resolve_bin "${cmd}")"
+[[ -n "${EXEC}" && -x "${EXEC}" ]] || die "could not resolve '${cmd}' to an executable (searched brew prefix + PATH)"
 exec_start="${EXEC}"
 for a in "$@"; do
   exec_start+=" $(printf '%q' "$a")"
 done
+
+# ExecStop (optional): split the one-string command on whitespace, resolve its
+# first token, quote the rest. Simple commands only — no pipes/quotes/globs.
+exec_stop=""
+if [[ -n "${EXECSTOP}" ]]; then
+  read -ra stop_parts <<< "${EXECSTOP}"
+  stop_bin="$(resolve_bin "${stop_parts[0]}")"
+  [[ -n "${stop_bin}" && -x "${stop_bin}" ]] || die "could not resolve exec-stop command '${stop_parts[0]}'"
+  exec_stop="${stop_bin}"
+  for a in "${stop_parts[@]:1}"; do
+    exec_stop+=" $(printf '%q' "$a")"
+  done
+fi
 
 [[ -n "${DESC}" ]] || DESC="${NAME} (brew) user service"
 
@@ -109,6 +132,7 @@ build_service() {
   printf '\n[Service]\n'
   printf 'Type=%s\n' "${svc_type}"
   printf 'ExecStart=%s\n' "${exec_start}"
+  [[ -n "${exec_stop}" ]] && printf 'ExecStop=%s\n' "${exec_stop}"
   printf 'Environment=PATH=%s\n' "${BREW_BIN}:${BREW_PREFIX}/sbin:/usr/local/bin:/usr/bin:/bin"
   printf 'Environment=HOMEBREW_PREFIX=%s\n' "${BREW_PREFIX}"
   local e
