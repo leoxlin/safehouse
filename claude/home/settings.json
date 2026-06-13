@@ -1,0 +1,15 @@
+{
+  "model": "opus",
+  "enabledPlugins": {
+    "lapdog@lapdog": true
+  },
+  "extraKnownMarketplaces": {
+    "lapdog": {
+      "source": {
+        "source": "github",
+        "repo": "DataDog/dd-apm-test-agent"
+      }
+    }
+  },
+  "effortLevel": "high"
+}

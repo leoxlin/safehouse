@@ -1,5 +1,12 @@
 browsh: .config/browsh
 
+claude[home]:
+  home/agents: .claude/agents
+  home/output-styles: .claude/output-styles
+  home/rules: .claude/rules
+  home/settings.json: .claude/settings.json
+  home/skills: .claude/skills
+
 docker: .docker
 
 ghostty: .config/ghostty
