@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "show_edit_predictions": false,
   "cli_default_open_behavior": "new_window",
   "project_panel": {
     "dock": "left",
@@ -39,9 +40,6 @@
       "args": ["-y", "@zed-industries/codex-acp@0.16.0"],
       "env": {},
     },
-  },
-  "features": {
-    "inline_completion_provider": "none",
   },
   "git_panel": {
     "dock": "left",
