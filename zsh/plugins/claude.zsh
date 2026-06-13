@@ -1,12 +1,18 @@
-function run_kimi_claude() {
+function run_openrouter_claude() {
+  MODEL=$1; shift
   ANTHROPIC_BASE_URL="https://openrouter.ai/api" \
-  ANTHROPIC_AUTH_TOKEN="$KIMI_OR_API_KEY" \
+  ANTHROPIC_AUTH_TOKEN="$OPENROUTER_API_KEY" \
   ANTHROPIC_API_KEY="" \
-  ANTHROPIC_MODEL="kimi-k2.5" \
-  ANTHROPIC_SMALL_FAST_MODEL="kimi-k2.5" \
+  ANTHROPIC_MODEL="$MODEL" \
+  ANTHROPIC_DEFAULT_OPUS_MODEL="$MODEL" \
+  ANTHROPIC_DEFAULT_SONNET_MODEL="$MODEL" \
+  ANTHROPIC_DEFAULT_HAIKU_MODEL="$MODEL" \
+  CLAUDE_CODE_SUBAGENT_MODEL="$MODEL" \
   CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1 \
+  CLAUDE_CODE_AUTO_COMPACT_WINDOW=262144 \
+  ENABLE_TOOL_SEARCH=false \
   API_TIMEOUT_MS=600000 \
   claude $@
 }
 
-alias kimi-code='run_kimi_claude'
+alias kimi-code='run_openrouter_claude kimi-k2.7-code'
