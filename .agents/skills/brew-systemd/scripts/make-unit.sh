@@ -26,7 +26,13 @@
 #                         "syncthing --stop"); its first token is path-resolved
 #                         like ExecStart
 #   --restart POLICY      Restart= for daemons (default: on-failure)
+#   --type TYPE           service Type= for daemons: simple (default), exec,
+#                         forking (use for commands that fork a daemon and
+#                         return, e.g. `foo start`), or notify
 #   --no-enable           write + daemon-reload only; do not enable/start
+#
+# All options must come BEFORE `--`; anything after `--` is treated as the
+# command verbatim.
 #   --dry-run             print the unit(s) to stdout; write nothing
 #   -- COMMAND [ARGS...]  everything after -- is the command to run
 #
@@ -48,9 +54,14 @@ PERSISTENT=0
 WORKDIR=""
 RESTART="on-failure"
 EXECSTOP=""
+TYPE=""
 ENABLE=1
 DRYRUN=0
 declare -a ENVS=()
+
+# All of this script's own option flags. Used to catch a flag mistakenly placed
+# AFTER `--`, where it would be silently swallowed into the command.
+KNOWN_FLAGS=" --name --description --timer --persistent --working-dir --env --exec-stop --restart --type --no-enable --dry-run -h --help "
 
 # --- parse args -------------------------------------------------------------
 while [[ $# -gt 0 ]]; do
@@ -63,10 +74,11 @@ while [[ $# -gt 0 ]]; do
     --env)         ENVS+=("${2:-}"); shift 2 ;;
     --exec-stop)   EXECSTOP="${2:-}"; shift 2 ;;
     --restart)     RESTART="${2:-}"; shift 2 ;;
+    --type)        TYPE="${2:-}"; shift 2 ;;
     --no-enable)   ENABLE=0; shift ;;
     --dry-run)     DRYRUN=1; shift ;;
     --)            shift; break ;;
-    -h|--help)     sed -n '2,36p' "$0"; exit 0 ;;
+    -h|--help)     sed -n '2,41p' "$0"; exit 0 ;;
     *)             die "unknown option: $1 (did you forget -- before the command?)" ;;
   esac
 done
@@ -74,6 +86,21 @@ done
 [[ -n "${NAME}" ]] || die "--name is required"
 [[ $# -gt 0 ]]     || die "no command given (put it after --)"
 [[ "${NAME}" =~ ^[A-Za-z0-9._-]+$ ]] || die "--name must be a valid unit name (alnum . _ -)"
+
+# Catch a brew-systemd flag that landed after `--`: it would otherwise be folded
+# into ExecStart with no warning (e.g. a misplaced --dry-run would write+enable
+# instead of preview). All options must precede `--`.
+for tok in "$@"; do
+  if [[ "${KNOWN_FLAGS}" == *" ${tok} "* ]]; then
+    die "'${tok}' is a brew-systemd option but appears after '--', so it would become part of the command. Put all options before '--'."
+  fi
+done
+
+# --type only applies to long-running services; timers always use oneshot.
+if [[ -n "${TYPE}" ]]; then
+  [[ "${TYPE}" =~ ^(simple|exec|forking|notify)$ ]] || die "--type must be one of: simple, exec, forking, notify"
+  [[ -n "${TIMER}" ]] && die "--type cannot be combined with --timer (timer jobs are always Type=oneshot)"
+fi
 
 # --- resolve a command's first token to an absolute path --------------------
 BREW_PREFIX="$(brew --prefix 2>/dev/null || echo /home/linuxbrew/.linuxbrew)"
@@ -122,7 +149,7 @@ build_service() {
   if [[ -n "${TIMER}" ]]; then
     svc_type="oneshot"; install=""           # timer pulls it in; no [Install]
   else
-    svc_type="simple";  install="WantedBy=default.target"
+    svc_type="${TYPE:-simple}";  install="WantedBy=default.target"
   fi
 
   printf '[Unit]\n'
@@ -140,7 +167,7 @@ build_service() {
     [[ -n "${e}" ]] && printf 'Environment=%s\n' "${e}"
   done
   [[ -n "${WORKDIR}" ]] && printf 'WorkingDirectory=%s\n' "${WORKDIR}"
-  if [[ "${svc_type}" == simple ]]; then
+  if [[ "${svc_type}" != oneshot ]]; then
     printf 'Restart=%s\n' "${RESTART}"
     printf 'RestartSec=5\n'
   fi

@@ -31,7 +31,15 @@ Confirm these before running the generator:
      a cleanup script). Needs an `OnCalendar` schedule → use `--timer`.
 2. **Unit name** — short, kebab/alnum (e.g. `syncthing`, `nightly-backup`).
 3. **Exact command + args** — exactly as the user would type it in a shell.
-4. **For scheduled jobs:** the schedule (`daily`, `hourly`, `*-*-* 03:00:00`,
+4. **Does the command stay in the foreground, or fork-and-return?** This picks
+   the service `Type` (daemons only):
+   - Stays foreground (the normal case) → `Type=simple` (default), nothing to do.
+   - Launcher-style that forks a background daemon and exits immediately (e.g.
+     `lapdog start`, `foo --daemon`) → pass `--type forking`, or systemd will
+     think the service finished the instant the launcher returns and mark it
+     inactive. If the command has a foreground/`--no-daemon`/`--foreground`
+     mode, preferring that with plain `simple` is usually cleaner.
+5. **For scheduled jobs:** the schedule (`daily`, `hourly`, `*-*-* 03:00:00`,
    `Mon *-*-* 09:00:00`) and whether to catch up missed runs (`--persistent`).
 
 Prefer `AskUserQuestion` to settle daemon-vs-timer and the schedule in one pass
@@ -43,9 +51,12 @@ if any of it is ambiguous.
 .agents/skills/brew-systemd/scripts/make-unit.sh --name NAME [opts] -- COMMAND [ARGS...]
 ```
 
-Everything after `--` is the command. The first token is resolved to an
-absolute path (brew prefix is searched first, since systemd units have no brew
-on `PATH`).
+**All options must come before `--`; everything after `--` is the command,
+verbatim.** A brew-systemd flag placed after `--` is rejected with an error (a
+misplaced `--dry-run`, for instance, would otherwise be folded into the command
+and the unit would be written and started instead of previewed). The first
+token after `--` is resolved to an absolute path (brew prefix is searched first,
+since systemd units have no brew on `PATH`).
 
 - **Preview before writing:** add `--dry-run` to print the unit(s) to stdout
   without touching the filesystem. Show this to the user to confirm, then re-run
@@ -59,9 +70,15 @@ on `PATH`).
   scripts/make-unit.sh --name nightly-backup --timer "*-*-* 03:00:00" \
     --persistent -- restic backup /home/llin
   ```
+- **Forking launcher with a start/stop pair:**
+  ```bash
+  scripts/make-unit.sh --name lapdog --type forking \
+    --exec-stop "lapdog stop" -- lapdog start
+  ```
 
 Useful options: `--description TEXT`, `--working-dir DIR`, `--env KEY=VAL`
 (repeatable), `--restart POLICY` (daemons; default `on-failure`),
+`--type TYPE` (`simple`|`exec`|`forking`|`notify`; daemons only),
 `--no-enable` (write + reload only, don't start).
 
 If the command needs an explicit shutdown step, pass `--exec-stop` with the
