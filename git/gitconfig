@@ -25,6 +25,7 @@
   default = ! git symbolic-ref --short refs/remotes/origin/HEAD
   last = log -1 HEAD
   root = rev-parse --show-toplevel
+  parent = ! git worktree list | head -n 1 | awk '{ print $1 }'
   empty = commit --allow-empty
   clear = ! git reset --hard && git clean -f -d && git checkout -- .
   clearbranch = ! git branch | grep -v 'master' | xargs git branch -D
