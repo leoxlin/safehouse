@@ -26,7 +26,7 @@
   "agent_servers": {
     "claude-acp": {
       "default_config_options": {
-        "model": "opus"
+        "model": "opus",
       },
       "type": "custom",
       "command": "npx",
@@ -40,11 +40,15 @@
       "env": {},
     },
   },
+  "features": {
+    "inline_completion_provider": "none",
+  },
   "git_panel": {
     "dock": "left",
   },
   "use_autoclose": false,
   "on_last_window_closed": "platform_default",
+  "proxy": "",
   "tab_size": 2,
   "use_system_prompts": true,
   "diagnostics": {
