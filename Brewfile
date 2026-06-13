@@ -19,11 +19,10 @@ if OS.mac?
   cask 'zed'
 end
 
-tap 'datadog/lapdog'
-
 brew 'bandwhich'
 brew 'bat'
 brew 'ctop'
+brew 'datadog/lapdog/lapdog', trusted: true
 brew 'delta'
 brew 'dive'
 brew 'eza'
@@ -56,6 +55,3 @@ brew 'vim'
 brew 'watch'
 brew 'yq'
 brew 'zoxide'
-
-cask 'codex'
-cask 'claude-code'
