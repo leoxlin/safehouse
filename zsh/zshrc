@@ -24,6 +24,7 @@ if [ -e "/opt/homebrew" ]; then
 fi
 
 [ -e "/home/linuxbrew/.linuxbrew/bin" ] && export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+[ -e "/home/linuxbrew/.linuxbrew/sbin" ] && export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"
 [ -e "$HOME/Tools" ] && export PATH="$HOME/Tools:$PATH"
 [ -e "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 [ -e "$HOME/.lmstudio/bin" ] && export PATH="$PATH:$HOME/.lmstudio/bin"
