@@ -2,6 +2,7 @@ browsh/firefox_profile
 karabiner/config/automatic_backups/
 karabiner/automatic_backups
 nushell/history.*
+zed/settings_backup.json
 zed/config/prompts/
 zed/prompts
 mailmon/plan.db
