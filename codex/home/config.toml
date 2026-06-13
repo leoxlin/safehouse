@@ -10,5 +10,8 @@ trust_level = "trusted"
 [projects."/home/llin/Source/homebase"]
 trust_level = "trusted"
 
+[projects."/home/llin/Source/forgejo"]
+trust_level = "trusted"
+
 [tui.model_availability_nux]
 "gpt-5.5" = 4
