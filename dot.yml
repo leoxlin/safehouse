@@ -8,6 +8,14 @@ claude[home]:
   home/settings.json: .claude/settings.json
   home/skills: .claude/skills
 
+codex[home]:
+  home/agents: .codex/agents
+  home/config.toml: .codex/config.toml
+  home/hooks: .codex/hooks
+  home/output-styles: .codex/output-styles
+  home/rules: .codex/rules
+  home/skills: .codex/skills
+
 docker: .docker
 
 ghostty: .config/ghostty
