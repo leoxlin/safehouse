@@ -2,6 +2,7 @@
   editor = vim
   excludesfile = ~/.gitignore
   bigFileThreshold = 1g
+
 [alias]
   # Power aliases
   ap = add -p
@@ -19,13 +20,13 @@
   ll = log --graph --oneline
   lll = log --all --graph --pretty=format:'%C(auto)%h%C(auto)%d %s %C(dim cyan)(%aN, %ar)'
   del = branch -D
+
   # Extra commands
   hash = rev-parse --short HEAD
   name = ! basename "$(git rev-parse --show-toplevel)"
   default = ! git symbolic-ref --short refs/remotes/origin/HEAD
   last = log -1 HEAD
   root = rev-parse --show-toplevel
-  parent = ! git worktree list | head -n 1 | awk '{ print $1 }'
   empty = commit --allow-empty
   clear = ! git reset --hard && git clean -f -d && git checkout -- .
   clearbranch = ! git branch | grep -v 'master' | xargs git branch -D
@@ -40,21 +41,34 @@
   ec = editconf
   pc = printconf
   brddone= ! git branch | git_prune_by_status.sh IN Done
+
+  # Worktree commands
+  worktree-parent = ! git worktree list | head -n 1 | awk '{ print $1 }'
+  worktree-child = "! f() { git worktree list | awk -v branch=\"$1\" '$3 == \"[\" branch \"]\" { print $1 }'; }; f"
+  wt = worktree
+  wtp = worktree-parent
+  wtc = worktree-child
+
 [user]
   name = Leo Xuzhang Lin
   email = me@leoxlin.com
+
 [color]
   status = auto
   ui = auto
+
 [color "status"]
   added = green
   changed = red
   untracked = blue
+
 [pull]
   rebase = false
+
 [push]
   default = simple
   autoSetupRemote = true
+
 [pager]
   branch = false
   tag = false
@@ -62,17 +76,22 @@
   log = delta
   reflog = delta
   show = delta
+
 [gpg]
   format = ssh
+
 [delta]
   navigate = true
   light = false
   line-numbers = true
   side-by-side = false
   syntax-theme = Nord
+
 [interactive]
   diffFilter = delta --color-only
+
 [includeIf "hasconfig:remote.*.url:git@github.com:articulate/**"]
   path = ~/.gitconfig-articulate
+
 [init]
   defaultBranch = main
