@@ -193,4 +193,6 @@ mise.local.toml
 
 # local stash folder
 .stash
+
+# claude local settings
 .claude/settings.local.json

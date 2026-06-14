@@ -9,3 +9,4 @@ mailmon/plan.db
 docker/buildx
 docker/.token_seed
 docker/.token_seed.lock
+codex/home/skills/.system/
