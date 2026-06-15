@@ -1,0 +1,46 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find *)",
+      "Bash(helm template *)",
+      "Bash(mkdir *)",
+      "mcp__context7__query-docs",
+      "mcp__context7__resolve-library-id"
+    ]
+  },
+  "model": "opus",
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/notify.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/notify.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "lapdog@lapdog": true
+  },
+  "extraKnownMarketplaces": {
+    "lapdog": {
+      "source": {
+        "source": "github",
+        "repo": "DataDog/dd-apm-test-agent"
+      }
+    }
+  },
+  "effortLevel": "high"
+}

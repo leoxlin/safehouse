@@ -24,6 +24,7 @@ if [ -e "/opt/homebrew" ]; then
 fi
 
 [ -e "/home/linuxbrew/.linuxbrew/bin" ] && export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+[ -e "/home/linuxbrew/.linuxbrew/sbin" ] && export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"
 [ -e "$HOME/Tools" ] && export PATH="$HOME/Tools:$PATH"
 [ -e "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 [ -e "$HOME/.lmstudio/bin" ] && export PATH="$PATH:$HOME/.lmstudio/bin"
@@ -56,5 +57,5 @@ if command -v starship >/dev/null 2>&1; then
   eval "$(starship init zsh)"
 fi
 
-[ -e "$HOME/.env" ] && export $(cat $HOME/.env | xargs)
+[ -e "$HOME/.env" ] && export $(grep -v '^#' $HOME/.env | xargs)
 

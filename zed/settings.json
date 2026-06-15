@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "show_edit_predictions": false,
   "cli_default_open_behavior": "new_window",
   "project_panel": {
     "dock": "left",
@@ -18,15 +19,34 @@
     "dock": "left",
   },
   "agent": {
+    "sidebar_side": "right",
     "dock": "right",
     "favorite_models": [],
     "model_parameters": [],
+  },
+  "agent_servers": {
+    "claude-acp": {
+      "default_config_options": {
+        "model": "opus",
+      },
+      "type": "custom",
+      "command": "npx",
+      "args": ["-y", "@agentclientprotocol/claude-agent-acp@0.44.0"],
+      "env": {},
+    },
+    "codex-acp": {
+      "type": "custom",
+      "command": "npx",
+      "args": ["-y", "@zed-industries/codex-acp@0.16.0"],
+      "env": {},
+    },
   },
   "git_panel": {
     "dock": "left",
   },
   "use_autoclose": false,
   "on_last_window_closed": "platform_default",
+  "proxy": "",
   "tab_size": 2,
   "use_system_prompts": true,
   "diagnostics": {
