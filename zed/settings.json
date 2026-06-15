@@ -74,18 +74,25 @@
     ],
   },
   "languages": {
+    "YAML": {
+      "prettier": {
+        "allowed": false,
+      },
+    },
     "Python": {
       "tab_size": 4,
       "format_on_save": "on",
       "formatter": [
         {
-          "code_actions": {
-            "source.organizeImports.ruff": true,
-            "source.fixAll.ruff": true,
-          },
+          "code_action": "source.organizeImports.ruff",
         },
         {
-          "language_server": { "name": "ruff" },
+          "code_action": "source.fixAll.ruff",
+        },
+        {
+          "language_server": {
+            "name": "ruff",
+          },
         },
       ],
     },
@@ -95,6 +102,9 @@
       "settings": {
         "yaml": {
           "customTags": ["!env_var"],
+          "format": {
+            "singleQuote": false,
+          },
         },
       },
     },
