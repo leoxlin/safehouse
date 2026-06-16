@@ -27,7 +27,9 @@ fi
 [ -e "/home/linuxbrew/.linuxbrew/sbin" ] && export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"
 [ -e "$HOME/Tools" ] && export PATH="$HOME/Tools:$PATH"
 [ -e "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
-[ -e "$HOME/.lmstudio/bin" ] && export PATH="$PATH:$HOME/.lmstudio/bin"
+[ -e "$HOME/.lmstudio/bin" ] && export PATH="$HOME/.lmstudio/bin:$PATH"
+[ -e "$HOME/.kimi-code/bin" ] && export PATH="$HOME/.kimi-code/bin:$PATH"
+
 
 if command -v mise >/dev/null 2>&1; then
   eval "$(mise activate zsh)"
