@@ -1,4 +1,8 @@
 {
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "permissions": {
     "allow": [
       "Bash(find *)",
@@ -32,19 +36,18 @@
     ]
   },
   "enabledPlugins": {
-    "lapdog@lapdog": true
+    "napdog@napdog": true
   },
   "extraKnownMarketplaces": {
-    "lapdog": {
+    "napdog": {
       "source": {
-        "source": "github",
-        "repo": "DataDog/dd-apm-test-agent"
+        "source": "directory",
+        "path": "/home/llin/Source/napdog"
       }
     }
   },
   "effortLevel": "high",
-  "attribution": {
-    "commit": "",
-    "pr": ""
+  "env": {
+    "NAPDOG_URL": "https://napdog.hydrahmlb.cc"
   }
 }
