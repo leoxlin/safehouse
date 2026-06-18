@@ -26,6 +26,8 @@ function _worktree_usage() {
   echo "       worktree ls [repo]"
   echo "       worktree prune [repo]"
   echo "       worktree remove|rm [repo@]<branch_name>"
+  echo ""
+  echo "cd creates the worktree if it does not already exist."
 }
 
 function _worktree_require_git_repo() {
@@ -184,31 +186,15 @@ function _worktree_mise_trust_if_untrusted() {
 }
 
 function _worktree_cd() {
-  local target repo branch worktree_path repo_path
+  local target="$1"
 
-  target="$1"
   if [ -z "$target" ]; then
     echo "You must provide a target for worktree" >&2
     _worktree_usage >&2
     return 1
   fi
 
-  {
-    read -r repo
-    read -r branch
-  } < <(_worktree_parse_target "$target") || return 1
-
-  repo_path="$(_worktree_resolve_repo "$repo")" || return 1
-  _worktree_require_git_repo "$repo_path" || return 1
-
-  worktree_path="$(git -C "$repo_path" worktree-child "$branch")" || return 1
-  if [ -z "$worktree_path" ]; then
-    echo "fatal: no worktree found for branch '$branch'" >&2
-    return 1
-  fi
-
-  _worktree_mise_trust_if_untrusted "$worktree_path"
-  cd "$worktree_path" || return 1
+  _worktree_add "$target"
 }
 
 function _worktree_list_repo() {
@@ -554,7 +540,7 @@ function _worktree_complete() {
     command)
       _values 'worktree command' \
         'add[create or switch to a worktree]' \
-        'cd[change to a worktree]' \
+        'cd[change to or create a worktree]' \
         'list[list worktrees]' \
         'ls[list worktrees]' \
         'prune[remove stale worktrees]' \
