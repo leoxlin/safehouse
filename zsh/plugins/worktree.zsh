@@ -15,6 +15,9 @@
 #     - [repo]            operate only on the named repo
 #
 # - Worktrees are created under $HOME/Worktrees/<id>/<repo> and reused by branch.
+#
+# - If mise is installed and the parent worktree's mise config is trusted,
+#   newly created worktrees are automatically trusted too.
 
 function _worktree_usage() {
   echo "usage: worktree add [repo@]<branch_name>"
@@ -170,6 +173,19 @@ function _worktree_is_older_than_days() {
   [ -n "$(find "$worktree_path" -prune -mtime +"$days" -print 2>/dev/null)" ]
 }
 
+function _worktree_mise_trust_if_parent_trusted() {
+  local worktree_path="$1"
+  local parent_path
+
+  command -v mise >/dev/null 2>&1 || return 0
+
+  parent_path="$(git worktree-parent)" || return 0
+
+  if mise trust --show -C "$parent_path" 2>/dev/null | grep -q ': trusted'; then
+    mise trust -y -q -C "$worktree_path"
+  fi
+}
+
 function _worktree_cd() {
   local target repo branch worktree_path repo_path
 
@@ -315,6 +331,7 @@ function _worktree_add() {
   fi
 
   cd "$worktree_path" || return 1
+  _worktree_mise_trust_if_parent_trusted "$worktree_path"
 }
 
 function _worktree_remove() {
