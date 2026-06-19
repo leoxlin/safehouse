@@ -72,10 +72,6 @@ alias dh='list_alias_starts_with d'
 alias lower="tr '[:upper:]' '[:lower:]'"
 alias upper="tr '[:lower:]' '[:upper:]'"
 
-# Python
-alias pi='pip install -r requirements.txt'
-alias ph='list_alias_starts_with p'
-
 # Kubectl
 alias k='kubectl'
 alias kg='kubectl get'
