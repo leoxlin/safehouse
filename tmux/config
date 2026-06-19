@@ -83,11 +83,12 @@ set -gw automatic-rename on
 # Misc
 set -g base-index 1
 set -g pane-base-index 1
-set -g renumber-windows on    # Renumber windows on close so they are sequential
+set -g renumber-windows on # Renumber windows on close so they are sequential
 set -g history-limit 100000
 set -g bell-action current
 set -gw monitor-activity off
 set -gw xterm-keys on
+set -g extended-keys on # Needed by some coding agents
 
 # fix ssh agent when tmux is detached
 setenv -g SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
