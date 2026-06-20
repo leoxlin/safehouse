@@ -29,7 +29,7 @@ fi
 [ -e "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 [ -e "$HOME/.lmstudio/bin" ] && export PATH="$HOME/.lmstudio/bin:$PATH"
 [ -e "$HOME/.kimi-code/bin" ] && export PATH="$HOME/.kimi-code/bin:$PATH"
-
+[ -e "$HOME/.kimi-webbridge/bin" ] && export PATH="$HOME/.kimi-webbridge/bin:$PATH"
 
 if command -v mise >/dev/null 2>&1; then
   eval "$(mise activate zsh)"
