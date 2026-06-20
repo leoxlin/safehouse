@@ -12,12 +12,6 @@ Host edge
 Host apodemus
   HostName 192.168.1.85
 
-Host falcon
-  HostName 192.168.4.10
-
-Host junco
-  HostName 192.168.4.11
-
 Host marten
   HostName 192.168.2.40
 
@@ -47,11 +41,6 @@ Host marmot-02
 
 Host marmot-03
   HostName 192.168.2.113
-
-Host hermes
-  HostName 192.168.4.11
-  RemoteCommand sudo su - hermes
-  RequestTTY yes
 
 Host pika-*
   RemoteCommand sudo su -
