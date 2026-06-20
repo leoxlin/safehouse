@@ -16,5 +16,8 @@ trust_level = "trusted"
 [projects."/home/llin/Source/chat-history-exporter"]
 trust_level = "trusted"
 
+[projects."/home/llin/Source/cloud-code"]
+trust_level = "trusted"
+
 [tui.model_availability_nux]
 "gpt-5.5" = 4

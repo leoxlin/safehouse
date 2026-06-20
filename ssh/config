@@ -9,6 +9,9 @@ Host edge
   User hydra
   HostName 192.168.1.1
 
+Host apodemus
+  HostName 192.168.1.85
+
 Host falcon
   HostName 192.168.4.10
 
