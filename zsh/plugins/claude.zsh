@@ -16,3 +16,5 @@ function run_openrouter_claude() {
 }
 
 alias kimi-code='run_openrouter_claude kimi-k2.7-code'
+
+alias ca='claude agents'
