@@ -26,20 +26,28 @@ fi
 [ -e "/home/linuxbrew/.linuxbrew/bin" ] && export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 [ -e "/home/linuxbrew/.linuxbrew/sbin" ] && export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"
 [ -e "$HOME/Tools" ] && export PATH="$HOME/Tools:$PATH"
-[ -e "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 [ -e "$HOME/.lmstudio/bin" ] && export PATH="$HOME/.lmstudio/bin:$PATH"
 [ -e "$HOME/.kimi-code/bin" ] && export PATH="$HOME/.kimi-code/bin:$PATH"
 [ -e "$HOME/.kimi-webbridge/bin" ] && export PATH="$HOME/.kimi-webbridge/bin:$PATH"
-
-if command -v mise >/dev/null 2>&1; then
-  eval "$(mise activate zsh)"
-fi
 
 for f in $(find ~/.zsh/plugins/ -maxdepth 1 -type f -name '*.zsh'); do
   source $f;
 done
 
-command -v keychain > /dev/null && keychain -q ~/.ssh/id_ed25519
+# Initialize mise (tool version management)
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+fi
+
+# Initialize zoxide (smarter cd)
+if `command -v zoxide >/dev/null 2>&1`; then
+  eval "$(zoxide init zsh)"
+fi
+
+# Initialize starship (faster prompt)
+if `command -v starship >/dev/null 2>&1`; then
+  eval "$(starship init zsh)"
+fi
 
 if `command -v zeditor > /dev/null` && [[ ! -f ~/.local/bin/zed ]]; then
     ln -s "$(command -v zeditor)" ~/.local/bin/zed
@@ -49,15 +57,5 @@ if `command -v nvim > /dev/null` && [[ ! -f ~/.local/bin/nvim ]]; then
     ln -s "$(command -v nvim)" ~/.local/bin/nvim
 fi
 
-# Initialize zoxide (smarter cd)
-if command -v zoxide >/dev/null 2>&1; then
-  eval "$(zoxide init zsh)"
-fi
-
-# Initialize Starship prompt
-if command -v starship >/dev/null 2>&1; then
-  eval "$(starship init zsh)"
-fi
-
 [ -e "$HOME/.env" ] && export $(grep -v '^#' $HOME/.env | xargs)
-
+[ -e "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
