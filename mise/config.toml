@@ -7,8 +7,5 @@ node = "25"
 python = "3.14.0"
 rust = "1.90.0"
 
-[env]
-_.python.venv = { path = "~/.venv", create = true }
-
 [settings]
 experimental = true
