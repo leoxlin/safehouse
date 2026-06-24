@@ -18,6 +18,8 @@ alias reload='source ~/.zshrc'
 
 # Modern CLI tools
 if command -v eza 1>/dev/null 2>&1; then
+  alias _ls='/usr/bin/ls --color=auto -X'
+  alias _la='/usr/bin/ls -A'
   alias ls='eza --color=auto --group-directories-first'
   alias la='eza -a'
   alias ll='eza -la'
