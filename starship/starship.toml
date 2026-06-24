@@ -2,19 +2,42 @@
 
 format = """
 $shell\
-$directory\
+${custom.directory}\
+${custom.worktree}\
 $git_branch\
 $git_state\
 $git_status\
 $line_break\
 $character"""
 
-[directory]
-style = "blue"
-
 [character]
 success_symbol = '[λ](bold 195)'
 error_symbol = '[λ](bold 210)'
+
+# Normal tree (and non-git dirs): show the repo-relative path, like the
+# built-in directory module. Hidden inside a worktree (see custom.worktree).
+[custom.directory]
+description = "Repo-relative path, except inside a git worktree"
+when = 'test "$(git rev-parse --path-format=absolute --git-dir 2>/dev/null)" = "$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null)"'
+command = '''
+top=$(git rev-parse --show-toplevel 2>/dev/null)
+if [ -n "$top" ]; then
+  pre=$(git rev-parse --show-prefix 2>/dev/null)
+  printf '%s' "$(basename "$top")${pre:+/${pre%/}}"
+else
+  printf '%s' "${PWD/#$HOME/~}" | awk -F/ '{s=(NF>3)?NF-2:1; for(i=s;i<=NF;i++) printf "%s%s", (i>s?"/":""), $i}'
+fi
+'''
+format = "[$output]($style) "
+style = "blue"
+
+# Inside a worktree: hide the worktree folder, show "(w) <main repo name>".
+[custom.worktree]
+description = "Show (w) repo_name when inside a git worktree"
+when = 'test "$(git rev-parse --path-format=absolute --git-dir 2>/dev/null)" != "$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null)"'
+command = 'printf "(w) %s" "$(basename "$(git worktree list | head -1 | awk "{print \$1}")")"'
+format = "[$output]($style) "
+style = "fg:13"
 
 [git_branch]
 format = "[$branch]($style)"
