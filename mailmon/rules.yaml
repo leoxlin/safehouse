@@ -1,44 +1,30 @@
-folders:
-  - name: Update
-    description: Automated updates like reminders, 2fa code, login notification
-    examples:
-      - Your Chase Online Activation Code
-      - A new sign-in on Linux
-      - Your one-time code
-      - Your event has been completed
-      - You have an upcoming event
-      - Updates to Klarna and WebBank Privacy Notices
-  - name: Newsletter
-    description: Newsletters, local events, and substack
-    examples:
-      - News & Events
-      - Discover J.P. Morgan Insights Your Quarterly E-Newsletter
-      - If you wish to unsubscribe from The Atlantic newsletters, click here.
-      - Summer 2024 Mud Newsletter
-  - name: Receipt
-    description: Receipts, delivery & order confirmations
-    examples:
-      - Your Friday evening trip with Uber
-      - Your receipt from Kagi by With Reach
-      - Your package was left near the front door or porch.
-      - Order Confirmation for Leo from Tori Japan
-      - 'Shipped: "Tealyra - Imperial Jasmine..." and 1 more item'
-      - 'Ordered: "Moroccanoil Hydrating..."'
-      - Details of your no-contact delivery from Tori Japan
-  - name: Travel
-    description: Travel confirmation, flights, hotels, and trip information
-    examples:
-      - Travel Reservation Center Trip ID
-      - Leo Xuzhang Lin's 09/30 Denver trip
-      - Travel itinerary for eDreams
-      - A reminder about your trip
-  - name: Finance
-    description: Financial statement, monthly statements, investments
-    examples:
-      - VANGUARD FUNDS Important Information
-      - Your credit card statement is available
-      - Your January 2026 transaction history
-      - Your individual account statement is available
-      - Your transfer to Robinhood is on its way
-      - Emails from Chase that isn't an activation code or login notice
+system_folders:
+  - Inbox
+  - Archive
+  - Drafts
+  - Sent
+  - Spam
+  - Trash
 
+age_thresholds:
+  categorize_days: 1
+  mark_read_days: 7
+  archive_days: 14
+
+folders:
+  Read:
+    description: >
+      Unread emails I should prioritize reading. Human emails, whitelisted
+      senders, important.
+    emails:
+      - thedartmouthgroup.com
+  Compost:
+    description: >
+      Emails I don't care about reading. Newsletters, automated updates,
+      marketing.
+    emails: []
+  Keep:
+    description: >
+      Emails I probably want to keep but not read. Financial statements,
+      receipts, travel confirmations.
+    emails: []
