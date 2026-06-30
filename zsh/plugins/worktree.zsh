@@ -14,7 +14,7 @@
 #   it is not already trusted. This prevents mise's chpwd hook from erroring.
 
 function _worktree_usage() {
-  echo "usage: worktree                      (interactive: pick repo, then worktree)"
+  echo "usage: worktree                      (interactive: pick branch/worktree; repo selection only when outside a repo)"
   echo "       worktree add <branch_name>"
   echo "       worktree cd <branch_name>"
   echo "       worktree list"
@@ -166,8 +166,10 @@ function _worktree_interactive_cd() {
     return 1
   fi
 
-  repo="$(_worktree_pick_repo)" || return 1
-  cd "$repo" || return 1
+  if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    repo="$(_worktree_pick_repo)" || return 1
+    cd "$repo" || return 1
+  fi
 
   branch="$(_worktree_pick_branch)" || return 1
 
