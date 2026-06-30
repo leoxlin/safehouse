@@ -88,7 +88,7 @@ function _worktree_branch_has_remote() {
 
   output="$(git for-each-ref --format='%(refname:short)' refs/remotes 2>/dev/null)"
 
-  for remote_branch in ${(f)"$output"}; do
+  for remote_branch in ${(f)output}; do
     if [ "${remote_branch#*/}" = "$branch" ]; then
       return 0
     fi
@@ -277,7 +277,7 @@ function _worktree_remove() {
 }
 
 function _worktree_prune() {
-  local parent worktree_path branch_ref branch_name line removed failed
+  local parent worktree_path branch_ref branch_name line removed failed reason
 
   _worktree_require_git_repo || return 1
 
@@ -288,20 +288,38 @@ function _worktree_prune() {
   removed=0
   failed=0
 
+  _worktree_prune_process() {
+    local worktree_path="$1" branch_ref="$2"
+    local branch_name reason
+
+    [ -n "$worktree_path" ] || return
+    [ "$worktree_path" != "$parent" ] || return
+
+    branch_name="$(_worktree_branch_name "$branch_ref")"
+
+    if [ ! -d "$worktree_path" ]; then
+      reason="missing directory"
+    elif _worktree_is_older_than_days "$worktree_path" 1; then
+      reason="older than 1 day"
+    elif ! _worktree_branch_has_remote "$branch_name"; then
+      reason="no remote branch"
+    else
+      return
+    fi
+
+    printf "Removing %s (%s)\t%s\n" "$branch_name" "$reason" "$worktree_path"
+    if [ ! -d "$worktree_path" ]; then
+      removed=1
+    elif git -C "$parent" worktree remove "$worktree_path"; then
+      removed=1
+    else
+      failed=1
+    fi
+  }
+
   while IFS= read -r line; do
     if [ -z "$line" ]; then
-      if [ -n "$worktree_path" ] && [ "$worktree_path" != "$parent" ]; then
-        branch_name="$(_worktree_branch_name "$branch_ref")"
-        if _worktree_is_older_than_days "$worktree_path" 7 && ! _worktree_branch_has_remote "$branch_name"; then
-          printf "Removing %s\t%s\n" "$branch_name" "$worktree_path"
-          if git -C "$parent" worktree remove "$worktree_path"; then
-            removed=1
-          else
-            failed=1
-          fi
-        fi
-      fi
-
+      _worktree_prune_process "$worktree_path" "$branch_ref"
       worktree_path=""
       branch_ref=""
     elif [[ "$line" == worktree\ * ]]; then
@@ -311,17 +329,9 @@ function _worktree_prune() {
     fi
   done < <(git -C "$parent" worktree list --porcelain)
 
-  if [ -n "$worktree_path" ] && [ "$worktree_path" != "$parent" ]; then
-    branch_name="$(_worktree_branch_name "$branch_ref")"
-    if _worktree_is_older_than_days "$worktree_path" 7 && ! _worktree_branch_has_remote "$branch_name"; then
-      printf "Removing %s\t%s\n" "$branch_name" "$worktree_path"
-      if git -C "$parent" worktree remove "$worktree_path"; then
-        removed=1
-      else
-        failed=1
-      fi
-    fi
-  fi
+  _worktree_prune_process "$worktree_path" "$branch_ref"
+
+  unfunction _worktree_prune_process
 
   git -C "$parent" worktree prune || return 1
   if [ "$removed" -eq 0 ] && [ "$failed" -eq 0 ]; then
