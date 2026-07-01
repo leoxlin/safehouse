@@ -21,9 +21,9 @@ unbind l
 bind l select-pane -R
 
 # Vertical split screen
-bind '\' split-window -h
+bind '\' split-window -h -c "#{pane_current_path}"
 # Horizontal split screen
-bind ']' split-window -v
+bind ']' split-window -v -c "#{pane_current_path}"
 # Kill pane (or tab)
 bind w kill-pane
 
