@@ -9,7 +9,7 @@
 # - Outside a git repo: pick one from ~/Source via fzf (type to filter).
 # - With no branch: pick an existing worktree branch, or type a new name to
 #   create one.
-# - Creates/switches the worktree (under ~/Source/.claude/worktrees, via the
+# - Creates/switches the worktree (under ~/Source/.agents/worktrees, via the
 #   worktree helper) and launches the entrypoint there.
 
 function _lfg_pick_repo() {

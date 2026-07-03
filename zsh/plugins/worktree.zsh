@@ -7,7 +7,7 @@
 #
 # - Repo-wide commands (list, ls, prune) take no arguments.
 #
-# - Worktrees are created under $HOME/Source/.claude/worktrees/<repo>-<branch>
+# - Worktrees are created under $HOME/Source/.agents/worktrees/<repo>-<branch>
 #   and reused by branch.
 #
 # - If mise is installed, entering a worktree auto-trusts its mise config when
@@ -52,7 +52,7 @@ function _worktree_default_ref() {
 }
 
 function _worktree_base_dir() {
-  echo "$HOME/Source/.claude/worktrees"
+  echo "$HOME/Source/.agents/worktrees"
 }
 
 function _worktree_new_path() {
