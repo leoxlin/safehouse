@@ -7,8 +7,8 @@
 #
 # - Repo-wide commands (list, ls, prune) take no arguments.
 #
-# - Worktrees are created under $HOME/Source/.agents/worktrees/<repo>-<branch>
-#   and reused by branch.
+# - Worktrees are created under $LFG_SOURCE_DIR/.agents/worktrees/<repo>-<branch>
+#   and reused by branch. LFG_SOURCE_DIR defaults to ~/src if unset.
 #
 # - If mise is installed, entering a worktree auto-trusts its mise config when
 #   it is not already trusted. This prevents mise's chpwd hook from erroring.
@@ -51,8 +51,13 @@ function _worktree_default_ref() {
   fi
 }
 
+function _worktree_sources_dir() {
+  local sources_dir="${LFG_SOURCE_DIR:-$HOME/src}"
+  echo "${sources_dir}"
+}
+
 function _worktree_base_dir() {
-  echo "$HOME/Source/.agents/worktrees"
+  echo "$(_worktree_sources_dir)/.agents/worktrees"
 }
 
 function _worktree_new_path() {
@@ -132,7 +137,7 @@ function _worktree_cd() {
 function _worktree_pick_repo() {
   local repo
 
-  repo="$(find "$HOME/Source" -mindepth 1 -maxdepth 1 -type d \
+  repo="$(find "$(_worktree_sources_dir)" -mindepth 1 -maxdepth 1 -type d \
       -exec test -e '{}/.git' ';' -print 2>/dev/null \
     | sort \
     | fzf --prompt='repo> ' --height=40% --reverse \

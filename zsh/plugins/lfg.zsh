@@ -6,16 +6,17 @@
 #     lfg               -> claude in a picked branch
 #     lfg codex         -> codex in a picked branch
 #     lfg claude feat/x -> claude in worktree for branch feat/x
-# - Outside a git repo: pick one from ~/Source via fzf (type to filter).
+# - Outside a git repo: pick one from $LFG_SOURCE_DIR via fzf (type to filter).
 # - With no branch: pick an existing worktree branch, or type a new name to
 #   create one.
-# - Creates/switches the worktree (under ~/Source/.agents/worktrees, via the
-#   worktree helper) and launches the entrypoint there.
+# - Creates/switches the worktree (under $LFG_SOURCE_DIR/.agents/worktrees, via
+#   the worktree helper) and launches the entrypoint there. LFG_SOURCE_DIR
+#   defaults to ~/src if unset.
 
 function _lfg_pick_repo() {
   local repo
 
-  repo="$(find "$HOME/Source" -mindepth 1 -maxdepth 1 -type d \
+  repo="$(find "$(_worktree_sources_dir)" -mindepth 1 -maxdepth 1 -type d \
       -exec test -e '{}/.git' ';' -print 2>/dev/null \
     | sort \
     | fzf --prompt='repo> ' --height=40% --reverse \
