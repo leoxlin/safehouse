@@ -50,7 +50,7 @@ function _worktree_require_git_repo() {
 function _worktree_default_ref() {
   local default_ref
 
-  default_ref="$(git default 2>/dev/null)"
+  default_ref="$(git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null)"
   if [ -n "$default_ref" ]; then
     echo "$default_ref"
   elif git show-ref --verify --quiet refs/heads/main; then
@@ -75,11 +75,24 @@ function _worktree_base_dir() {
   echo "$(_worktree_sources_dir)/.agents/worktrees"
 }
 
+function _worktree_parent_path() {
+  git worktree list --porcelain | awk 'NR==1 { sub(/^worktree /, ""); print }'
+}
+
+function _worktree_path_for_branch() {
+  local branch="$1"
+
+  git worktree list --porcelain | awk -v branch="$branch" '
+    /^worktree / { path = $0; sub(/^worktree /, "", path) }
+    /^branch / { ref = $0; sub(/^branch /, "", ref); if (ref == "refs/heads/" branch) { print path; exit } }
+  '
+}
+
 function _worktree_new_path() {
   local branch root repo
 
   branch="$1"
-  root="$(git worktree-parent)" || return 1
+  root="$(_worktree_parent_path)" || return 1
   repo="$(basename "$root")"
 
   echo "$(_worktree_base_dir)/$repo-${branch//\//-}"
@@ -246,7 +259,7 @@ function _worktree_add() {
 
   _worktree_require_git_repo || return 1
 
-  worktree_path="$(git worktree-child "$branch")" || return 1
+  worktree_path="$(_worktree_path_for_branch "$branch")" || return 1
   if [ -n "$worktree_path" ]; then
     _worktree_mise_trust_if_untrusted "$worktree_path"
     cd "$worktree_path" || return 1
@@ -263,7 +276,7 @@ function _worktree_add() {
     git worktree add -b "$branch" "$worktree_path" "$default_ref" || return 1
   fi
 
-  worktree_path="$(git worktree-child "$branch")" || return 1
+  worktree_path="$(_worktree_path_for_branch "$branch")" || return 1
   if [ -z "$worktree_path" ]; then
     echo "fatal: could not find worktree for branch '$branch'" >&2
     return 1
@@ -285,8 +298,8 @@ function _worktree_remove() {
 
   _worktree_require_git_repo || return 1
 
-  parent="$(git worktree-parent)" || return 1
-  worktree_path="$(git worktree-child "$branch")" || return 1
+  parent="$(_worktree_parent_path)" || return 1
+  worktree_path="$(_worktree_path_for_branch "$branch")" || return 1
   if [ -z "$worktree_path" ]; then
     echo "fatal: no worktree found for branch '$branch'" >&2
     return 1
@@ -301,7 +314,7 @@ function _worktree_prune() {
 
   _worktree_require_git_repo || return 1
 
-  parent="$(git worktree-parent)" || return 1
+  parent="$(_worktree_parent_path)" || return 1
 
   worktree_path=""
   branch_ref=""
