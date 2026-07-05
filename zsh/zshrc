@@ -29,6 +29,7 @@ fi
 [ -e "$HOME/.lmstudio/bin" ] && export PATH="$HOME/.lmstudio/bin:$PATH"
 [ -e "$HOME/.kimi-code/bin" ] && export PATH="$HOME/.kimi-code/bin:$PATH"
 [ -e "$HOME/.kimi-webbridge/bin" ] && export PATH="$HOME/.kimi-webbridge/bin:$PATH"
+[ -e "$HOME/.local/share/pi-node/current/bin" ] && export PATH="$HOME/.local/share/pi-node/current/bin:$PATH"
 
 for f in $(find ~/.zsh/plugins/ -maxdepth 1 -type f -name '*.zsh'); do
   source $f;
