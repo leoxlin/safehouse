@@ -194,16 +194,18 @@ mise.local.toml
 # local stash folder
 .stash
 
-# claude local settings
+# claude
 .claude/worktrees
 .claude/settings.local.json
 **/.claude/settings.local.json
+**/.claude/.cc-writes/
 
 # worktrees
 .agents/worktrees
-
-.superpowers
 .worktrees
+
+# other agent plugins / skills
+.superpowers
 
 # ignore docs symlink, but allow docs/ directory
 docs
