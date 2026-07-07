@@ -35,8 +35,16 @@ for f in $(find ~/.zsh/plugins/ -maxdepth 1 -type f -name '*.zsh'); do
   source $f;
 done
 
-if [ -e "$HOME/.config/lfg" ]; then
-  source "$HOME/.config/lfg/lfg.zsh"
+function lfg_worktree_setup() {
+  local worktree_path="$1"
+  command -v mise >/dev/null 2>&1 || return 0
+  if mise trust --show -C "$worktree_path" 2>/dev/null | grep -q ': untrusted'; then 
+    mise trust -y -q -C "$worktree_path"
+  fi
+}
+
+if [ -e "$HOME/.local/share/lfg" ]; then
+  source "$HOME/.local/share/lfg/lfg.zsh"
 fi
 
 # Initialize mise (tool version management)
@@ -65,3 +73,4 @@ fi
 
 [ -e "$HOME/.env" ] && export $(grep -v '^#' $HOME/.env | xargs)
 [ -e "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
+
