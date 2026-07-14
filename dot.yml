@@ -10,7 +10,6 @@ claude[home]:
 
 codex[home]:
   home/agents: .codex/agents
-  home/config.toml: .codex/config.toml
   home/hooks: .codex/hooks
   home/output-styles: .codex/output-styles
   home/rules: .codex/rules
