@@ -53,6 +53,12 @@ if command -v mise >/dev/null 2>&1; then
   eval "$(mise completion zsh)"
 fi
 
+# Initialize fnox (secret management)
+if command -v fnox >/dev/null 2>&1; then
+  eval "$(fnox activate zsh)"
+  eval "$(fnox completion zsh)"
+fi
+
 # Initialize zoxide (smarter cd)
 if `command -v zoxide >/dev/null 2>&1`; then
   eval "$(zoxide init zsh)"
