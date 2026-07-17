@@ -1,3 +1,6 @@
+[plugins]
+"agents" = "https://github.com/leoxlin/mise-agents.git"
+
 [tools]
 "flux2" = "2.7.5"
 "fnox" = "1.25.1"
@@ -7,6 +10,7 @@
 "python" = "3.14.0"
 "rust" = "1.90.0"
 "npm:skills" = "latest"
+"agents:pi" = "latest"
 
 [settings]
 experimental = true
