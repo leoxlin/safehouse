@@ -35,6 +35,9 @@ for f in $(find ~/.zsh/plugins/ -maxdepth 1 -type f -name '*.zsh'); do
   source $f;
 done
 
+[ -e "$HOME/.env" ] && export $(grep -v '^#' $HOME/.env | xargs)
+[ -e "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
+
 function lfg_worktree_setup() {
   local worktree_path="$1"
   command -v mise >/dev/null 2>&1 || return 0
@@ -45,18 +48,6 @@ function lfg_worktree_setup() {
 
 if [ -e "$HOME/.local/share/lfg" ]; then
   source "$HOME/.local/share/lfg/lfg.zsh"
-fi
-
-# Initialize mise (tool version management)
-if command -v mise >/dev/null 2>&1; then
-  eval "$(mise activate zsh)"
-  eval "$(mise completion zsh)"
-fi
-
-# Initialize fnox (secret management)
-if command -v fnox >/dev/null 2>&1; then
-  eval "$(fnox activate zsh)"
-  eval "$(fnox completion zsh)"
 fi
 
 # Initialize zoxide (smarter cd)
@@ -77,6 +68,15 @@ if `command -v nvim > /dev/null` && [[ ! -f ~/.local/bin/nvim ]]; then
     ln -s "$(command -v nvim)" ~/.local/bin/nvim
 fi
 
-[ -e "$HOME/.env" ] && export $(grep -v '^#' $HOME/.env | xargs)
-[ -e "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
+# Initialize mise (tool version management)
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+  eval "$(mise completion zsh)"
+fi
+
+# Initialize fnox (secret management)
+if command -v fnox >/dev/null 2>&1; then
+  eval "$(fnox activate zsh)"
+  eval "$(fnox completion zsh)"
+fi
 
