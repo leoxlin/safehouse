@@ -17,6 +17,7 @@ zstyle ':completion:*' timeout 1
 
 if [ -e "/opt/homebrew" ]; then
   export PATH="/opt/homebrew/bin:$PATH"
+  export PATH="/opt/homebrew/sbin:$PATH"
   export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
   export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
   export PATH="/opt/homebrew/opt/bzip2/bin:$PATH"
@@ -41,7 +42,7 @@ done
 function lfg_worktree_setup() {
   local worktree_path="$1"
   command -v mise >/dev/null 2>&1 || return 0
-  if mise trust --show -C "$worktree_path" 2>/dev/null | grep -q ': untrusted'; then 
+  if mise trust --show -C "$worktree_path" 2>/dev/null | grep -q ': untrusted'; then
     mise trust -y -q -C "$worktree_path"
   fi
 }
@@ -79,4 +80,3 @@ if command -v fnox >/dev/null 2>&1; then
   eval "$(fnox activate zsh)"
   eval "$(fnox completion zsh)"
 fi
-
