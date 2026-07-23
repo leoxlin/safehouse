@@ -6,12 +6,13 @@
 "fnox" = "1.25.1"
 "go" = "1.24.9"
 "helm-ls" = "v0.5.4"
-"node" = "22"
+"node" = "22.23.1"
 "python" = "3.14.0"
 "rust" = "1.90.0"
 "npm:skills" = "latest"
 "npm:@fission-ai/openspec" = "latest"
 "agents:pi" = "latest"
+"bun" = "latest"
 
 [settings]
 experimental = true
