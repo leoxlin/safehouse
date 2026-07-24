@@ -1,5 +1,5 @@
 [plugins]
-"agents" = "https://github.com/leoxlin/mise-agents.git"
+"vfox" = "git::https://github.com/leoxlin/mise-agents.git//plugins/agents?ref=main"
 
 [tools]
 "flux2" = "2.7.5"
