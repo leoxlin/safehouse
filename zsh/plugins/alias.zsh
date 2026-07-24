@@ -15,6 +15,9 @@ function list_alias_starts_with() {
 # Shell aliases
 alias quit='exit'
 alias reload='source ~/.zshrc'
+if ! command -v open >/dev/null 2>&1 && command -v xdg-open >/dev/null 2>&1; then
+  alias open='xdg-open'
+fi
 
 # Modern CLI tools
 if command -v eza 1>/dev/null 2>&1; then
