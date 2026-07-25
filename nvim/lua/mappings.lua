@@ -19,6 +19,14 @@ map("v", "<C-s>", "<ESC><cmd>w<cr>", { desc = "Save file in visual mode" })
 
 -- File explorer (Zed's ctrl+n for left dock)
 map("n", "<C-n>", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle file explorer" })
+map({ "n", "v" }, "<RightMouse>", function()
+  require("menu.utils").delete_old_menus()
+  vim.cmd.exec '"normal! \\<RightMouse>"'
+
+  local buf = vim.api.nvim_win_get_buf(vim.fn.getmousepos().winid)
+  local menu = vim.bo[buf].ft == "NvimTree" and "nvimtree" or "default"
+  require("menu").open(menu, { mouse = true })
+end, { desc = "Context menu" })
 
 -- Navigation
 map("n", "<C-b>", "<cmd>lua vim.lsp.buf.definition()<cr>", { desc = "Go to definition" })
