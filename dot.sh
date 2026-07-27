@@ -159,11 +159,14 @@ while IFS= read -r config_type; do
         items=$(yq eval ".[\"${config_type}\"] | keys | .[]" "${YAML_FILE}")
 
         while IFS= read -r item; do
-            dest_path=$(yq eval ".[\"${config_type}\"][\"${item}\"]" "${YAML_FILE}")
             source_path="${SCRIPT_DIR}/${base_type}/${item}"
-            dest_full="${HOME_DIR}/${dest_path}"
+            dest_paths=$(yq eval ".[\"${config_type}\"][\"${item}\"] | [.] | flatten | .[]" "${YAML_FILE}")
 
-            create_symlink "${source_path}" "${dest_full}" "${DRY_RUN}"
+            while IFS= read -r dest_path; do
+                dest_full="${HOME_DIR}/${dest_path}"
+
+                create_symlink "${source_path}" "${dest_full}" "${DRY_RUN}"
+            done <<< "${dest_paths}"
         done <<< "${items}"
     fi
 done <<< "${config_types}"

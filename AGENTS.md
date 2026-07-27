@@ -7,7 +7,7 @@ Personal dotfiles repo for setting up new machines (macOS and Linux).
 - Each top-level directory holds one tool's config (e.g. `nvim/`, `zsh/`, `git/`, `k9s/`).
 - `dot.yml` maps each source path to its symlink destination under `$HOME`.
   - Direct mapping: `tmux: .tmux.conf` links the whole directory/file.
-  - Nested mapping: list individual files under a directory key.
+  - Nested mapping: list individual files under a directory key; use a destination list to link one source more than once.
   - Workstation qualifiers `name[home]` / `name[work]` only link when they match `~/.wstype`.
 
 ## Scripts

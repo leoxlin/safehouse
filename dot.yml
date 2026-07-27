@@ -1,12 +1,19 @@
 browsh: .config/browsh
 
+agents:
+  MAIN.md:
+    - .codex/AGENTS.md
+    - .claude/CLAUDE.md
+  skills:
+    - .agents/skills
+    - .claude/skills
+
 claude[home]:
   home/agents: .claude/agents
   home/hooks: .claude/hooks
   home/output-styles: .claude/output-styles
   home/rules: .claude/rules
   home/settings.json: .claude/settings.json
-  home/skills: .claude/skills
 
 codex[home]:
   home/agents: .codex/agents
