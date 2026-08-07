@@ -210,4 +210,4 @@ mise.local.toml
 # ignore docs symlink, but allow docs/ directory
 docs
 !docs/
-
+.lavish
