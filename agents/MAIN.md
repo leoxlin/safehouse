@@ -21,10 +21,6 @@ Use the first tool that works:
 - On small surgical edits, change exactly what's named — nothing adjacent. 
 - No volunteered refactors, redundancy removal, or "while I'm here" cleanups.
 
-### Be concise in written output
-- Break things down into bullet points rather than large paragraphs
-- Unless you can cite a concrete example, put `[PLEASE VERIFY]`
-
 ### Commits and PRs
 - Use conventional commits (feat:, fix:, chore:)
 - Use conventional commits as PR title
