@@ -4,7 +4,7 @@
 # Homebrew state. Mutates nothing; safe to run unattended.
 #
 # Usage: audit.sh [path/to/Brewfile]
-#   Defaults to ./Brewfile, then ~/Source/homebase/Brewfile.
+#   Defaults to ./Brewfile, then ~/Source/safehouse/Brewfile.
 
 set -euo pipefail
 
@@ -12,8 +12,8 @@ BREWFILE="${1:-}"
 if [[ -z "${BREWFILE}" ]]; then
   if [[ -f Brewfile ]]; then
     BREWFILE="Brewfile"
-  elif [[ -f "${HOME}/Source/homebase/Brewfile" ]]; then
-    BREWFILE="${HOME}/Source/homebase/Brewfile"
+  elif [[ -f "${HOME}/Source/safehouse/Brewfile" ]]; then
+    BREWFILE="${HOME}/Source/safehouse/Brewfile"
   fi
 fi
 [[ -f "${BREWFILE}" ]] || { echo "Brewfile not found; pass its path as the first arg." >&2; exit 1; }

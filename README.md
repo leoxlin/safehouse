@@ -1,4 +1,4 @@
-# homebase
+# safehouse
 
 My collection of dotfiles and configs to help set up new machines. Configs are
 platform agnostic but OSX might require karabiner to properly work.

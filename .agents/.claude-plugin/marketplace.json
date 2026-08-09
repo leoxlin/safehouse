@@ -7,7 +7,7 @@
     {
       "name": "local-skills",
       "source": "./",
-      "description": "Skills for the homebase dotfiles repo"
+      "description": "Skills for the safehouse dotfiles repo"
     }
   ]
 }

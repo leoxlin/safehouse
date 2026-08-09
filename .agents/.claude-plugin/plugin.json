@@ -1,6 +1,6 @@
 {
   "name": "local-skills",
-  "description": "Skills for the homebase dotfiles repo (Homebrew/Brewfile maintenance, etc.)",
+  "description": "Skills for the safehouse dotfiles repo (Homebrew/Brewfile maintenance, etc.)",
   "version": "0.1.0",
   "author": {
     "name": "Leo Xuzhang Lin"
