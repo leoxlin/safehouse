@@ -36,8 +36,8 @@
     },
     "codex-acp": {
       "type": "custom",
-      "command": "npx",
-      "args": ["-y", "@agentclientprotocol/codex-acp"],
+      "command": "codex-acp",
+      "args": [],
       "env": {},
     },
   },
