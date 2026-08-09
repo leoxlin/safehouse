@@ -12,6 +12,8 @@
 "npm:skills" = "latest"
 "npm:happy" = "latest"
 "npm:@fission-ai/openspec" = "latest"
+"npm:@agentclientprotocol/claude-agent-acp" = "latest"
+"npm:@agentclientprotocol/codex-acp" = "latest"
 "agents:pi" = "latest"
 "bun" = "latest"
 
