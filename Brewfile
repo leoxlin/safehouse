@@ -18,6 +18,7 @@ if OS.mac?
   cask 'zed'
 end
 
+brew 'age'
 brew 'bandwhich'
 brew 'bat'
 brew 'cloudflared'
