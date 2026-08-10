@@ -9,7 +9,7 @@ Host edge
   User hydra
   HostName 192.168.1.1
 
-Host apodemus
+Host hare
   HostName 192.168.1.85
 
 Host marten
