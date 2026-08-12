@@ -1,0 +1,9 @@
+---
+all:
+  hosts:
+    ocelot:
+      ansible_host: 192.168.2.60
+
+workstations:
+  hosts:
+    ocelot:

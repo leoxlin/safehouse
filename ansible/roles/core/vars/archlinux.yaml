@@ -1,0 +1,16 @@
+---
+ssh_service_name: sshd
+timesync_service_name: chronyd
+timesync_config_path: /etc/chrony.conf
+timesync_driftfile_path: /var/lib/chrony/drift
+
+system_packages:
+  - curl
+  - wget
+  - vim
+  - htop
+  - git
+  - rsync
+  - fail2ban
+
+system_services: []

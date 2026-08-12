@@ -1,0 +1,5 @@
+---
+traefik_user: llin
+traefik_user_uid: 1000
+traefik_group: llin
+traefik_home: "/home/{{ traefik_user }}"

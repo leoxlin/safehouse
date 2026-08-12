@@ -1,0 +1,11 @@
+---
+- name: Configure workstations
+  hosts: workstations
+  become: true
+  roles:
+    - role: core
+      tags: role-core
+    - role: semaphore
+      tags: role-semaphore
+    - role: traefik
+      tags: role-traefik

@@ -1,0 +1,59 @@
+---
+- name: Install UFW
+  ansible.builtin.package:
+    name: ufw
+    state: present
+
+- name: Align UFW IPv6 support with system configuration
+  ansible.builtin.lineinfile:
+    path: /etc/default/ufw
+    regexp: "^IPV6="
+    line: "IPV6={{ 'yes' if ipv6_enabled | default(false) else 'no' }}"
+
+- name: Set UFW default policies
+  community.general.ufw:
+    direction: "{{ item.direction }}"
+    policy: "{{ item.policy }}"
+  loop:
+    - direction: incoming
+      policy: deny
+    - direction: outgoing
+      policy: allow
+    - direction: routed
+      policy: allow
+  loop_control:
+    label: "{{ item.direction }}: {{ item.policy }}"
+
+- name: Allow SSH through firewall
+  community.general.ufw:
+    rule: allow
+    port: "{{ ssh_port | default('22') }}"
+    proto: tcp
+    from_ip: "192.168.0.0/16"
+    comment: "CORE: SSH"
+
+- name: Allow Docker through firewall
+  community.general.ufw:
+    rule: allow
+    from_ip: "172.16.0.0/12"
+    comment: "CORE: DOCKER"
+  when: security_firewall_allow_docker_subnet
+
+- name: Allow additional firewall rules
+  community.general.ufw:
+    rule: "{{ item.rule | default('allow') }}"
+    port: "{{ item.port }}"
+    proto: "{{ item.proto | default('tcp') }}"
+    from_ip: "{{ item.from_ip | default('192.168.0.0/16') }}"
+    comment: "CORE: {{ item.comment | default('RULE') }}"
+  loop: "{{ security_firewall_rules | default([]) }}"
+  loop_control:
+    label: "{{ item.port }}/{{ item.proto | default('tcp') }}"
+
+- name: Enable UFW
+  community.general.ufw:
+    state: enabled
+
+- name: Reload UFW
+  community.general.ufw:
+    state: reloaded
