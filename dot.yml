@@ -24,6 +24,8 @@ codex[home]:
 
 docker: .docker
 
+fren: .local/bin/fren
+
 ghostty: .config/ghostty
 
 git:
