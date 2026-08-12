@@ -79,7 +79,7 @@ echo "Setting up mise..."
   exit 1
 }
 
-sudo ln -s $(pwd)/shell-entrypoint /usr/local/bin/shell-entrypoint
+sudo ln -sfn "${SCRIPT_DIR}/shell-entrypoint" /usr/local/bin/shell-entrypoint
 
 # Setup 1Password SSH agent socket symlink (macOS only)
 if [[ "$(uname)" == "Darwin" ]]; then
