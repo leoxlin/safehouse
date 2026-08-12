@@ -102,3 +102,4 @@ alias nu='nu --config ~/.config/nushell/config.nu --env-config ~/.config/nushell
 alias mr='mise run'
 alias gs='git status'
 alias osh='openshell'
+alias fren='codex -C ~/Agents'
