@@ -22,8 +22,6 @@ codex[home]:
   home/rules: .codex/rules
   home/skills: .codex/skills
 
-docker: .docker
-
 fren: .local/bin/fren
 
 ghostty: .config/ghostty
