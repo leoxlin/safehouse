@@ -7,8 +7,8 @@ else
   readonly BREW_PATH="/home/linuxbrew/.linuxbrew/bin"
 fi
 
-if [[ -f "$BREW_PATH/tmux" ]]; then
-  $BREW_PATH/tmux new-session -A -s default
+if [[ -f "$BREW_PATH/zsh" ]]; then
+  exec "$BREW_PATH/zsh"
 else
-  /usr/bin/zsh
+  exec /usr/bin/zsh
 fi

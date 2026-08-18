@@ -11,7 +11,7 @@ macos-titlebar-proxy-icon = hidden
 gtk-titlebar-style = native
 gtk-toolbar-style = raised
 gtk-tabs-location = top
-window-show-tab-bar = never
+window-show-tab-bar = auto
 
 # Disable notifications
 bell-features = no-system,no-audio,no-attention,no-title,no-border
@@ -42,21 +42,21 @@ keybind = ctrl+shift+arrow_down=goto_split:down
 # Misc keybinds
 keybind = ctrl+k=clear_screen
 
-# Tab management (send to tmux via C-a prefix)
-keybind = ctrl+t=text:\x01c
-keybind = ctrl+w=text:\x01w
-keybind = ctrl+arrow_right=text:\x01n
-keybind = ctrl+arrow_left=text:\x01p
+# Tab management (native ghostty tabs)
+keybind = ctrl+t=new_tab
+keybind = ctrl+w=close_surface
+keybind = ctrl+arrow_right=next_tab
+keybind = ctrl+arrow_left=previous_tab
 
-keybind = ctrl+1=text:\x011
-keybind = ctrl+2=text:\x012
-keybind = ctrl+3=text:\x013
-keybind = ctrl+4=text:\x014
-keybind = ctrl+5=text:\x015
-keybind = ctrl+6=text:\x016
-keybind = ctrl+7=text:\x017
-keybind = ctrl+8=text:\x018
-keybind = ctrl+9=text:\x019
+keybind = ctrl+1=goto_tab:1
+keybind = ctrl+2=goto_tab:2
+keybind = ctrl+3=goto_tab:3
+keybind = ctrl+4=goto_tab:4
+keybind = ctrl+5=goto_tab:5
+keybind = ctrl+6=goto_tab:6
+keybind = ctrl+7=goto_tab:7
+keybind = ctrl+8=goto_tab:8
+keybind = ctrl+9=goto_tab:9
 
 keybind = ctrl+shift+r=reload_config
 
