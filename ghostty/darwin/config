@@ -1,0 +1,62 @@
+theme = "Everblush"
+selection-background = #232a2d
+unfocused-split-opacity = 1
+command = /usr/local/bin/shell-entrypoint
+
+# OSX specific configs
+macos-titlebar-style = tabs
+macos-titlebar-proxy-icon = hidden
+gtk-titlebar-style = native
+gtk-toolbar-style = raised
+gtk-tabs-location = top
+window-show-tab-bar = never
+
+# Disable notifications
+bell-features = no-system,no-audio,no-attention,no-title,no-border
+desktop-notifications = false
+
+# Disable close confirmation
+confirm-close-surface = false
+
+# Bind shift enter to work properly
+keybind = shift+enter=text:\n
+
+# More natural copy paste but preserve SIGINT
+# ctrl+c remains available for SIGINT
+keybind = performable:super+c=copy_to_clipboard
+keybind = super+v=paste_from_clipboard
+
+# Rebind splits and navigation
+keybind = super+\=text:\x01\\
+keybind = super+]=text:\x01]
+keybind = super+shift+\=new_split:left
+keybind = super+shift+]=new_split:up
+
+keybind = super+shift+arrow_left=goto_split:left
+keybind = super+shift+arrow_right=goto_split:right
+keybind = super+shift+arrow_up=goto_split:up
+keybind = super+shift+arrow_down=goto_split:down
+
+# Misc keybinds
+keybind = super+k=clear_screen
+
+# Tab management (send to tmux via C-a prefix)
+keybind = super+t=text:\x01c
+keybind = super+w=text:\x01w
+keybind = super+arrow_right=text:\x01n
+keybind = super+arrow_left=text:\x01p
+
+keybind = super+1=text:\x011
+keybind = super+2=text:\x012
+keybind = super+3=text:\x013
+keybind = super+4=text:\x014
+keybind = super+5=text:\x015
+keybind = super+6=text:\x016
+keybind = super+7=text:\x017
+keybind = super+8=text:\x018
+keybind = super+9=text:\x019
+
+keybind = super+shift+r=reload_config
+
+# Unbind clashing keybinds
+keybind = super+shift+o=unbind

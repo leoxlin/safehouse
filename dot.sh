@@ -5,6 +5,7 @@ set -euo pipefail
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly YAML_FILE="${SCRIPT_DIR}/dot.yml"
 readonly HOME_DIR="${HOME}"
+readonly PLATFORM="$(uname | tr '[:upper:]' '[:lower:]')"
 
 # Determine Homebrew path
 if [[ "$(uname)" == "Darwin" ]]; then
@@ -117,6 +118,24 @@ create_symlink() {
     fi
 }
 
+# Replace a legacy whole-directory link before creating links inside it.
+prepare_nested_destination() {
+    local dest="$1"
+    local source_root="$2"
+    local dry_run="$3"
+    local parent
+    parent="$(dirname "$dest")"
+
+    if [[ -L "$parent" ]] && [[ "$(readlink "$parent")" == "$source_root" ]]; then
+        if [[ "$dry_run" == "true" ]]; then
+            echo -e "${YELLOW}[~]${NC} Would replace (symlink): $parent"
+        else
+            rm "$parent"
+            mkdir -p "$parent"
+        fi
+    fi
+}
+
 echo "Dotfiles symlink manager"
 echo "========================"
 echo ""
@@ -160,11 +179,16 @@ while IFS= read -r config_type; do
 
         while IFS= read -r item; do
             source_path="${SCRIPT_DIR}/${base_type}/${item}"
+            platform_source_path="${SCRIPT_DIR}/${base_type}/${PLATFORM}/${item}"
+            if [[ -e "${platform_source_path}" ]]; then
+                source_path="${platform_source_path}"
+            fi
             dest_paths=$(yq eval ".[\"${config_type}\"][\"${item}\"] | [.] | flatten | .[]" "${YAML_FILE}")
 
             while IFS= read -r dest_path; do
                 dest_full="${HOME_DIR}/${dest_path}"
 
+                prepare_nested_destination "${dest_full}" "${SCRIPT_DIR}/${base_type}" "${DRY_RUN}"
                 create_symlink "${source_path}" "${dest_full}" "${DRY_RUN}"
             done <<< "${dest_paths}"
         done <<< "${items}"

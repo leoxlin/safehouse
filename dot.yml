@@ -24,7 +24,8 @@ codex[home]:
 
 fren: .local/bin/fren
 
-ghostty: .config/ghostty
+ghostty:
+  config: .config/ghostty/config
 
 git:
   githooks: .githooks
@@ -63,7 +64,10 @@ vim:
   config: .vim/config
   vimrc: .vimrc
 
-zed: .config/zed
+zed:
+  keymap.json: .config/zed/keymap.json
+  prompts: .config/zed/prompts
+  settings.json: .config/zed/settings.json
 
 zsh:
   plugins: .zsh/plugins

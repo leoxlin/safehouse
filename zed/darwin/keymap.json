@@ -1,0 +1,87 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  // Use native macOS Command key bindings.
+  {
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-=": ["zed::IncreaseBufferFontSize", { "persist": false }],
+      "cmd-+": ["zed::IncreaseBufferFontSize", { "persist": false }],
+      "cmd--": ["zed::DecreaseBufferFontSize", { "persist": false }],
+      "cmd-0": ["zed::ResetBufferFontSize", { "persist": false }],
+      "cmd-shift-o": ["projects::OpenRecent", { "create_new_window": true }],
+      "cmd-o": "file_finder::Toggle",
+      "cmd-q": "workspace::CloseWindow",
+      "cmd-s": "workspace::Save",
+      "cmd-n": "workspace::ToggleLeftDock",
+      "cmd-w": null,
+      "cmd-`": null,
+    },
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "cmd-b": "editor::GoToDefinition",
+      "cmd-f": "buffer_search::Deploy",
+      "cmd-r": "buffer_search::DeployReplace",
+      "cmd-a": "editor::SelectAll",
+      "cmd-c": "editor::Copy",
+      "cmd-v": "editor::Paste",
+      "cmd-w": "workspace::CloseWindow",
+      "cmd-x": "editor::Cut",
+      "cmd-z": "editor::Undo",
+      "cmd-shift-z": "editor::Redo",
+      "cmd-/": ["editor::ToggleComments", { "advance_downwards": false }],
+      "cmd-[": "editor::Outdent",
+      "cmd-]": "editor::Indent",
+    },
+  },
+  {
+    "context": "VimControl",
+    "bindings": {
+      "cmd-w": "pane::CloseActiveItem",
+    },
+  },
+  {
+    "context": "ProjectPanel",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-left": "project_panel::CollapseAllEntries",
+      "cmd-n": "project_panel::NewFile",
+      "cmd-d": "project_panel::Duplicate",
+      "alt-cmd-n": "project_panel::NewDirectory",
+      "cmd-x": "project_panel::Cut",
+      "cmd-c": "project_panel::Copy",
+      "cmd-v": "project_panel::Paste",
+      "cmd-alt-c": "workspace::CopyPath",
+      "alt-cmd-shift-c": "workspace::CopyRelativePath",
+      "cmd-backspace": ["project_panel::Trash", { "skip_prompt": true }],
+      "cmd-delete": ["project_panel::Delete", { "skip_prompt": false }],
+      "alt-cmd-r": "project_panel::RevealInFileManager",
+      "cmd-shift-enter": "workspace::OpenWithSystem",
+      "cmd-alt-backspace": ["project_panel::Delete", { "skip_prompt": false }],
+      "cmd-alt-shift-f": "project_panel::NewSearchInDirectory",
+    },
+  },
+  {
+    "context": "Terminal",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-c": "terminal::Copy",
+      "cmd-v": "terminal::Paste",
+      "cmd-f": "buffer_search::Deploy",
+      "cmd-k": "terminal::Clear",
+    },
+  },
+  {
+    "context": "SettingsWindow",
+    "bindings": {
+      "escape": "workspace::CloseWindow",
+    },
+  },
+]
