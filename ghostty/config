@@ -8,10 +8,10 @@ command = /usr/local/bin/shell-entrypoint
 # OSX specific configs
 macos-titlebar-style = tabs
 macos-titlebar-proxy-icon = hidden
-gtk-titlebar-style = native
+gtk-titlebar-style = tabs
 gtk-toolbar-style = raised
 gtk-tabs-location = top
-window-show-tab-bar = auto
+window-show-tab-bar = always
 
 # Disable notifications
 bell-features = no-system,no-audio,no-attention,no-title,no-border
@@ -29,8 +29,10 @@ keybind = performable:ctrl+c=copy_to_clipboard
 keybind = ctrl+v=paste_from_clipboard
 
 # Rebind splits and navigation
-keybind = ctrl+\=text:\x01\\
-keybind = ctrl+]=text:\x01]
+# Splits mirror tmux pane bindings (\ right, ] down, w kill)
+split-divider-color = #323c41
+keybind = ctrl+\=new_split:right
+keybind = ctrl+]=new_split:down
 keybind = ctrl+shift+\=new_split:left
 keybind = ctrl+shift+]=new_split:up
 
@@ -38,6 +40,12 @@ keybind = ctrl+shift+arrow_left=goto_split:left
 keybind = ctrl+shift+arrow_right=goto_split:right
 keybind = ctrl+shift+arrow_up=goto_split:up
 keybind = ctrl+shift+arrow_down=goto_split:down
+
+# Vim-like split navigation (mirrors tmux h/j/k/l)
+keybind = ctrl+shift+h=goto_split:left
+keybind = ctrl+shift+j=goto_split:bottom
+keybind = ctrl+shift+k=goto_split:top
+keybind = ctrl+shift+l=goto_split:right
 
 # Misc keybinds
 keybind = ctrl+k=clear_screen
