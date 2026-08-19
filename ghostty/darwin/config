@@ -21,14 +21,15 @@ confirm-close-surface = false
 # Bind shift enter to work properly
 keybind = shift+enter=text:\n
 
-# More natural copy paste but preserve SIGINT
-# ctrl+c remains available for SIGINT
-keybind = performable:super+c=copy_to_clipboard
+# Send terminal control keys before passing through the original key
+keybind = unconsumed:super+c=text:\x03
+keybind = unconsumed:super+a=text:\x01
+keybind = unconsumed:super+e=text:\x05
 keybind = super+v=paste_from_clipboard
 
 # Rebind splits and navigation
-keybind = super+\=text:\x01\\
-keybind = super+]=text:\x01]
+keybind = super+\=new_split:right
+keybind = super+]=new_split:down
 keybind = super+shift+\=new_split:left
 keybind = super+shift+]=new_split:up
 
