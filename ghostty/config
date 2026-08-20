@@ -7,7 +7,7 @@ shell-integration-features = no-title
 
 # Working directory
 working-directory = inherit
-tab-inherit-working-directory = home
+tab-inherit-working-directory = false
 
 # OSX specific configs
 macos-titlebar-style = tabs
