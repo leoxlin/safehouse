@@ -3,8 +3,11 @@
 theme = "Everblush"
 selection-background = #232a2d
 unfocused-split-opacity = 1
-command = /usr/local/bin/shell-entrypoint
 shell-integration-features = no-title
+
+# Working directory
+working-directory = inherit
+tab-inherit-working-directory = home
 
 # OSX specific configs
 macos-titlebar-style = tabs
