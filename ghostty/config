@@ -21,6 +21,9 @@ window-show-tab-bar = always
 bell-features = no-system,no-audio,no-attention,no-title,no-border
 desktop-notifications = false
 
+# Disable agent progress tracking (OSC 9;4 progress bar)
+progress-style = false
+
 # Disable close confirmation
 confirm-close-surface = false
 
