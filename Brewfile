@@ -22,6 +22,7 @@ brew 'age'
 brew 'bandwhich'
 brew 'bat'
 brew 'cloudflared'
+brew 'charmbracelet/tap/crush'
 brew 'ctop'
 brew 'datadog/lapdog/lapdog', trusted: true
 brew 'delta'
