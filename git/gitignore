@@ -206,6 +206,7 @@ mise.local.toml
 
 # other agent plugins / skills
 .superpowers
+.smolpowers
 
 # ignore docs symlink, but allow docs/ directory
 docs
