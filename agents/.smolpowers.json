@@ -1,0 +1,11 @@
+{
+  "activation": "manual",
+  "designDir": ".smolpowers/spec",
+  "planDir": ".smolpowers/plans",
+  "phases": {
+    "finish": {
+      "commit": "commit the verified change",
+      "push": "push the current branch"
+    }
+  }
+}
