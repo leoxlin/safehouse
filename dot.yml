@@ -53,7 +53,6 @@ vim:
 
 zed:
   keymap.json: .config/zed/keymap.json
-  prompts: .config/zed/prompts
   settings.json: .config/zed/settings.json
 
 zsh:
