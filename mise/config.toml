@@ -12,6 +12,7 @@
 "npm:@agentclientprotocol/claude-agent-acp" = "latest"
 "npm:@agentclientprotocol/codex-acp" = "latest"
 "bun" = "latest"
+"npm:@deepseek-ai/dsh" = "0.1.1-rc.2"
 
 [settings]
 experimental = true
