@@ -9,20 +9,6 @@ agents:
     - .claude/skills
   .smolpowers.json: .smolpowers.json
 
-claude[home]:
-  home/agents: .claude/agents
-  home/hooks: .claude/hooks
-  home/output-styles: .claude/output-styles
-  home/rules: .claude/rules
-  home/settings.json: .claude/settings.json
-
-codex[home]:
-  home/agents: .codex/agents
-  home/hooks: .codex/hooks
-  home/output-styles: .codex/output-styles
-  home/rules: .codex/rules
-  home/skills: .codex/skills
-
 fren: .local/bin/fren
 
 ghostty:
