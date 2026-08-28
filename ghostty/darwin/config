@@ -1,8 +1,6 @@
 theme = "Everblush"
 selection-background = #232a2d
 unfocused-split-opacity = 1
-command = /usr/local/bin/shell-entrypoint
-
 # OSX specific configs
 macos-titlebar-style = tabs
 macos-titlebar-proxy-icon = hidden
