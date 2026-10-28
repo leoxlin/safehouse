@@ -13,6 +13,7 @@
 "npm:@agentclientprotocol/claude-agent-acp" = "latest"
 "npm:@agentclientprotocol/codex-acp" = "latest"
 "pnpm" = "latest"
+"usage" = "3.5.2"
 
 [settings]
 experimental = true
