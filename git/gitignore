@@ -212,3 +212,5 @@ mise.local.toml
 docs
 !docs/
 .lavish
+
+.aws
