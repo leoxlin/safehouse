@@ -1,14 +1,5 @@
 browsh: .config/browsh
 
-agents:
-  MAIN.md:
-    - .codex/AGENTS.md
-    - .claude/CLAUDE.md
-  skills:
-    - .agents/skills
-    - .claude/skills
-  .smolpowers.json: .smolpowers.json
-
 fren: .local/bin/fren
 
 ghostty:
